@@ -9,6 +9,11 @@
 	<div class="container">
 		<section layout:fragment="content">
 			<!-- blog form starts -->
+			<div class="">
+				<span th:if="${invalidField}">
+					error in fields
+				</span>
+			</div>
 			<form th:action="@{/blog/new}" th:method="post" th:object="${blog}"
 				role="form" class="form-horizontal">
 				<div class="form-group">

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+	<head>
+	<meta charset="UTF-8"/>
+	<title th:text="#{category.show}"></title>
+	</head>
+	
+	<body>
+		<div layout:fragment="content">
+			<div class="container">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p th:text="#{category.show}"></p>
+						<a th:href="@{/category/new}" th:text="#{category.new}"></a>
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="category : ${categories}">
+									<td th:text="${category.name}"></td>
+									<td><a th:href="@{/category/edit/{id}(id=${category.id})}" class="btn btn-primary btn-sm "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td>
+										<i class="fa fa-trash-o red" aria-hidden="true"></i> 
+									</td>
+								</tr>
+							</tbody>							
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

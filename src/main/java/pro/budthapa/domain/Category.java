@@ -31,7 +31,7 @@ public class Category implements Serializable{
 	private Long id;
 	
 	@Column(name="name", unique=true)
-	@NotBlank(message="{category.invalid.name}")
+	@NotBlank(message="{category.name.invalid}")
 	private String name;
 
 	@OneToMany(mappedBy="category", cascade=CascadeType.ALL)
