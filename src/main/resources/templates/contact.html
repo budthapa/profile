@@ -1,16 +1,93 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorator="layout">
+	layout:decorator="layout">
 <head>
-  <title>Contact</title>
-  <script src="content-script.js"></script>
+<title>Contact</title>
+<script src="content-script.js"></script>
 </head>
 <body>
-  <section layout:fragment="content">
-    <p>This is a paragraph from content page 1</p>
-  </section>
-  <footer>
-    <p layout:fragment="custom-footer">This is some footer content from content page 1</p>
-  </footer>
+	<section layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-lg-12">
+					<h1 class="h1">
+						<small>Have a question or two? Let's talk</small>
+					</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="well well-sm">
+						<form>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="name"> Name</label> <input type="text"
+											class="form-control" id="name" placeholder="Enter name"
+											required="required" />
+									</div>
+									<div class="form-group">
+										<label for="email"> Email Address</label>
+										<div class="input-group">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-envelope"></span> </span> <input
+												type="email" class="form-control" id="email"
+												placeholder="Enter email" required="required" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="subject"> Subject</label> <select id="subject"
+											name="subject" class="form-control" required="required">
+											<option value="na" selected="">Choose One:</option>
+											<option value="service">General Inquiry</option>
+											<option value="suggestions">Suggestions</option>
+											<option value="product">Support</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="name"> Message</label>
+										<textarea name="message" id="message" class="form-control"
+											rows="9" cols="25" required="required" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-primary pull-right"
+										id="btnContactUs">Send Message</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<form>
+						<legend>
+							<span class="glyphicon glyphicon-globe"></span> Quick Contact
+						</legend>
+						<address>
+							<strong>Buddhi Bal Thapa</strong><br /> Al Rigga, Dubai<br /> 
+							<abbr title="Phone"> P:</abbr>
+							+971 50 860 9904
+						</address>
+						<address>
+							<a href="mailto:budthapa@gmail.com">budthapa@gmail.com</a>
+						</address>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</section>
+<!-- 
+	<footer class="footer">
+		<div class="container">
+			<div layout:fragment="custom-footer"></div>
+		</div>
+	</footer> -->
 </body>
 </html>
+

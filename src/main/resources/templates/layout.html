@@ -54,10 +54,32 @@
 	</div>
 	<footer class="footer">
 		<div class="container">
-			<p layout:fragment="custom-footer">This is some footer content
-				from content page 1</p>
-			<p>Footer from layout page</p>
-	  		</div>
+			<div layout:fragment="custom-footer">
+				<div class="row footer-content">
+					<div class="col-sm-4 hidden-xs">
+						<ul>
+							<li>Project</li>
+							<li>Blog</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul>
+							<li>Buddhi Bal Thapa</li>
+							<li>budthapa@gmail.com</li>
+							<li>+971 50 860 9904</li>
+						</ul>
+					</div>
+					<div class="col-sm-4 hidden-xs">
+						<ul>
+							<li>github</li>
+							<li>linkedin</li>
+							<li>twitter</li>
+						</ul>
+					</div>	
+				</div>
+			</div>
+	  	</div>
 	</footer>
 	<script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
