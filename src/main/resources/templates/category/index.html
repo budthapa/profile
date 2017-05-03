@@ -12,6 +12,9 @@
 					<div class="panel-heading">
 						<p th:text="#{category.show}"></p>
 						<a th:href="@{/category/new}" th:text="#{category.new}"></a>
+					<div class="alert alert-danger" th:if="${categoryNotFound}">
+						<span th:text="#{category.not.exists}"></span>
+					</div>
 					</div>
 					<div class="panel-body">
 						<table class="table">

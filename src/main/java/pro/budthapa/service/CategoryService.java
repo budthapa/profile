@@ -10,4 +10,8 @@ public interface CategoryService {
 	public Category checkDuplicateCategory(String name);
 
 	public List<Category> findAllCategory();
+
+	public Category findCategory(Long id);
+
+	public void updateCategory(Category category);
 }

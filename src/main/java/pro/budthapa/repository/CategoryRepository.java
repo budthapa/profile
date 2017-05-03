@@ -8,4 +8,5 @@ import pro.budthapa.domain.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 	public Category findByName(String name);
+	public Category findById(Long id);
 }

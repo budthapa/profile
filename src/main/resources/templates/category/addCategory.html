@@ -27,6 +27,10 @@
 						<div class="alert alert-success" th:if="${categorySaved}">
 							<p th:text="#{category.save.success}"></p>
 						</div>
+						
+						<div class="alert alert-success" th:if="${categoryNotFound}">
+							<p th:text="#{category.not.exists}"></p>
+						</div>
 						<div class="form-group">
 							<label for="name" th:text="#{category.name}">Username</label> <input
 								type="text" th:field="*{name}" class="form-control required" />
