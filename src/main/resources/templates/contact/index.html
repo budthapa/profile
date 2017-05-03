@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+	<head>
+	<meta charset="UTF-8"/>
+	<title th:text="#{contact.all}"></title>
+	</head>
+	
+	<body>
+		<div layout:fragment="content">
+			<div class="container">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p th:text="#{contact.all}"></p>
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Date</th>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="message : ${messages}">
+									<td th:text="${message.name}"></td>
+									<td th:text="${message.email}"></td>
+									<td th:text="${message.date}"></td>
+									<td><a th:href="@{/contact/message/{id}(id=${message.id})}" th:text="${message.subject}"></a></td>
+									<td th:if="${#strings.length(message.message)&lt;30}">
+										<span th:utext="${message.message}"></span>
+									</td>
+									<td th:with="msg=${#strings.substring(message.message,0,30)}" th:if="${#strings.length(message.message)&gt;30}" 
+									th:utext="${msg}" >
+										<span th:utext="${msg}"></span>
+									</td>
+									<td>
+										<i class="fa fa-trash-o red" aria-hidden="true"></i> 
+									</td>
+								</tr>
+							</tbody>							
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

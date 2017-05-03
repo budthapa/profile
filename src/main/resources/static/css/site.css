@@ -28,7 +28,11 @@ a{
 	color: #cfcfcf;
 //	padding: 2px
 }
-
+	
+.panel-default > .panel-heading {
+    background-color: #3b92aa;
+}
+	
 .navbar {
     border-radius: 0px;
 }
