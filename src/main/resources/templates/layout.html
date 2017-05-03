@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Buddhi
+<title layout:title-pattern="$CONTENT_TITLE :: $LAYOUT_TITLE">Buddhi
 	Bal Thapa</title>
 <link rel="stylesheet"
 	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
@@ -24,19 +24,18 @@
 									class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">Project name</a>
+							<a class="navbar-brand" th:href="@{/}">Project name</a>
 						</div>
 						<div id="navbar" class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="#">Home</a></li>
-								<li><a href="#">Resume</a></li>
-								<li><a href="#">Portfolio</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Contact</a></li>
+								<li><a th:href="@{/resume}">Resume</a></li>
+								<li><a th:href="@{/project}">Project</a></li>
+								<li><a th:href="@{/blog}">Blog</a></li>
+								<li><a th:href="@{/contact}">Contact</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+									<a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
 								</li>
 							</ul>
 						</div>

@@ -22,3 +22,42 @@ body{
 	color: black;
 	padding: 5px;
 }
+
+
+/* login box starts */
+.forgot-password{
+	font-size: 80%; 
+	position: relative; 
+	top: -24px;
+	color: #eadbdb;
+}
+
+.forgot-password-link {
+    color: #eadbdb;
+    text-decoration: none !important;
+}
+
+.forgot-password-link:hover{
+	color:white;
+}
+#loginbox{
+	margin-top: 20px;
+}
+
+#login-panel-body{
+	padding-top: 30px
+}
+.login-input{
+	margin-bottom: 25px
+}
+
+.panel-info > .panel-heading {
+    color: #31708f;
+    background-color: #103f6c;
+    border-color: #077b19;
+}
+
+.panel-title {
+    color: #eadbdb;
+}
+/* login box ends */
