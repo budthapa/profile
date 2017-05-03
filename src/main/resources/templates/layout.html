@@ -51,13 +51,14 @@
 				<p>Page content goes here</p>
 			</section>
 		</div>
-		<div class="row">
-			<footer>
-				<p>Footer from layout page</p>
-				<p layout:fragment="custom-footer">Custom footer here</p>
-			</footer>
-		</div>
 	</div>
+	<footer class="footer">
+		<div class="container">
+			<p layout:fragment="custom-footer">This is some footer content
+				from content page 1</p>
+			<p>Footer from layout page</p>
+	  		</div>
+	</footer>
 	<script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous">

@@ -1,11 +1,18 @@
 @CHARSET "UTF-8";
 
 /* Custom CSS for the application */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body{
 	background-color: rgb(31, 57, 69);
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0 auto;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
 
 #wrapper{
@@ -61,3 +68,12 @@ body{
     color: #eadbdb;
 }
 /* login box ends */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 15%;
+  background-color: #333333;
+}
