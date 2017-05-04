@@ -111,3 +111,9 @@ a{
 	border: 1px solid #709ff2;	
 }
 /* contact page ends */
+
+/* blog page starts */
+.most-popular-blog{
+	background-color: #bec8cb !important;
+}
+/* blog page ends */

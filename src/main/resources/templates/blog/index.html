@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+<title>All Blogs</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="col-sm-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p th:text="#{blog.all}"></p>
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Title</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="blog : ${blogs}">
+									<td><a th:href="@{/blog/show/{id}(id=${blog.id})}"
+										th:text="${blog.title}"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.most.popular}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${blogs}">
+							<p>
+								<a th:href="@{/blog/show/{id}(id=${blog.id})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 
+	<footer class="footer">
+		<div class="container">
+			<div layout:fragment="custom-footer"></div>
+		</div>
+	</footer> -->
+</body>
+</html>

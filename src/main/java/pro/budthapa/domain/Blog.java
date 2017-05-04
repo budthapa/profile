@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -25,14 +26,14 @@ public class Blog implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
+	@Size(min=3,max=255, message="blog.title.invalid")
 	private String title;
 	
-	@Length(min=3)
+	@Size(min=3,max=5000)
 	@NotNull
 	private String description;
 	
-	private LocalDate create_date;
+	private LocalDate create_date=LocalDate.now();
 	
 	private LocalDate update_date;
 	
@@ -46,6 +47,7 @@ public class Blog implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="category_id")
+	@NotNull
 	private Category category;
 
 	public Long getId() {
@@ -61,7 +63,7 @@ public class Blog implements Serializable{
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this.title = title.trim();
 	}
 
 	public String getDescription() {

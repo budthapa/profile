@@ -9,18 +9,16 @@
 	<div class="container">
 		<section layout:fragment="content">
 			<!-- blog form starts -->
-			<div class="">
-				<span th:if="${invalidField}">
-					error in fields
-				</span>
-			</div>
-			<form th:action="@{/blog/new}" th:method="post" th:object="${blog}"
-				role="form" class="form-horizontal">
+			<form th:action="@{/blog/new}" th:method="post" th:object="${blog}" role="form" class="form-horizontal">
+				<div class="alert alert-success">
+					<span th:if="${blogSaved}" th:text="#{blog.save.success}">
+					</span>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">Title:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" th:field="*{title}"
-							placeholder="Blog Title" />
+						<input type="text" class="form-control" th:field="*{title}" placeholder="Blog Title" />
+						<span th:if="${#fields.hasErrors('title')}" th:error="*{title}" class="help-block alert alert-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -28,15 +26,16 @@
 					<div class="col-sm-10">
 						<select id="category" th:field="*{category}">
 							<option value="">Select Category</option>
-							<option th:each="category: ${categories}"
-								th:value="${category.id}" th:name="${category.name}"></option>
+							<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
 						</select>
+						<span th:if="${#fields.hasErrors('category')}" th:error="*{category}" class="help-block alert alert-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="description">Description:</label>
 					<div class="col-sm-10">
-						<textarea rows="15" cols="100"></textarea>
+						<textarea rows="15" cols="100" th:field="*{description}"></textarea>
+						<span th:if="${#fields.hasErrors('description')}" th:error="*{description}" class="help-block alert alert-danger"></span>
 					</div>
 
 				</div>
