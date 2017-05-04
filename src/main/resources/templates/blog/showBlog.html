@@ -7,11 +7,11 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="col-sm-8">
+			<div class="col-sm-9">
 				<span><a th:href="@{/blog/all}"><i
 						class="fa fa-long-arrow-left" aria-hidden="true"></i> Go Back</a></span>
-				<div class="panel panel-default">
-					<div class="panel-body blog-panel">
+				<div class="">
+					<div class="blog-panel">
 						<div class="row">
 							<p th:text="${blog.title}" class="title-heading"></p>
 							<div class="published-on">
@@ -67,7 +67,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{blog.most.popular}"></p>

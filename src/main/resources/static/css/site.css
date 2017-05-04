@@ -4,10 +4,11 @@
 html {
 	position: relative;
 	min-height: 100%;
+	background-color:#efefef;
 }
 
 body {
-	background-color: rgb(31, 57, 69);
+	background-color: #efefef;
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0 auto;
@@ -20,17 +21,17 @@ ul {
 }
 
 a {
-	color: #eadbdb;
+	/* color: #eadbdb; */
 	text-decoration: none !important;
 }
 
 #wrapper {
-	color: #cfcfcf; //
+	/* color: #cfcfcf; */ //
 	padding: 2px
 }
 
 .panel-default>.panel-heading {
-	background-color: #3b92aa;
+	background-color: #e7e8e9;
 }
 
 .navbar {
@@ -38,7 +39,7 @@ a {
 }
 
 #main-content-box {
-	background-color: #cecece;
+	/* background-color: #cecece; */
 	color: black;
 	padding: 5px;
 }
@@ -87,9 +88,10 @@ a {
 .footer {
 	position: absolute;
 	bottom: 0;
+	
+	/*Set the fixed height of the footer here
+	height: 15%; */
 	width: 100%;
-	/* Set the fixed height of the footer here */
-	height: 15%;
 	background-color: #333333;
 	color: #FFFFFF;
 }
@@ -122,6 +124,7 @@ a {
 
 .blog-panel {
 	margin-left: 10px;
+	margin-top:10px;
 }
 
 .title-heading {
