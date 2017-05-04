@@ -41,9 +41,11 @@
 										</a>
 									</td>
 									<td>
-									<a th:href="@{/blog/delete/{id}(id=${blog.id})}" class="red">
-										<i class="fa fa-trash" aria-hidden="true"></i>
-										</a>
+										<form id="delete-form" th:method="post" th:action="@{/blog/delete/{id}(id=${blog.id})}">
+										<!-- onsubmit="return confirm('Do you really want to submit the form?');" -->
+											<button type="button" class="btn btn-danger delete-confirm">
+											<i class="fa fa-trash" aria-hidden="true"></i></button>
+										</form>
 									</td>
 								</tr>
 							</tbody>

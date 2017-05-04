@@ -94,7 +94,7 @@ public class BlogController {
 		return EDIT_BLOG_PAGE;
 	}
 
-	@GetMapping("/blog/delete/{id}")
+	@PostMapping("/blog/delete/{id}")
 	public String deleteBlog(@PathVariable Long id, Model model, Blog blog) {
 		blogService.deleteBlog(id);
 		model.addAttribute("blogDeleted", true);
