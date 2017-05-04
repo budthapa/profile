@@ -13,6 +13,11 @@
 						<p th:text="#{blog.all}"></p>
 					</div>
 					<div class="panel-body">
+						<div th:if="${blogNotFound}"
+							class="alert alert-danger alert-dismissable fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<span th:text="#{blog.not.found}"></span>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>

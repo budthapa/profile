@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Blog;
@@ -18,6 +19,7 @@ import pro.budthapa.service.CategoryService;
 public class BlogController {
 	private static final String ADD_NEW_BLOG = "blog/addBlog";
 	private static final String INDEX_PAGE = "blog/index";
+	private static final String SHOW_BLOG_PAGE = "blog/showBlog";
 
 	
 	@Autowired
@@ -42,6 +44,7 @@ public class BlogController {
 			model.addAttribute("blogSaved", true);
 			return ADD_NEW_BLOG;
 		}
+		
 		return ADD_NEW_BLOG;
 	}
 	
@@ -49,5 +52,17 @@ public class BlogController {
 	public String findAllBlog(Model model){
 		model.addAttribute("blogs",blogService.findAllBlogs());
 		return INDEX_PAGE;
+	}
+	
+	@GetMapping("/blog/show/{id}")
+	public String findAllBlog(@PathVariable Long id, Model model){
+		Blog blog = blogService.findBlogById(id);
+		if(blog!=null){
+			model.addAttribute("blog",blog);
+			return SHOW_BLOG_PAGE;			
+		}
+		model.addAttribute("blogNotFound",true);
+		model.addAttribute("blogs",blogService.findAllBlogs());
+		return INDEX_PAGE;			
 	}
 }

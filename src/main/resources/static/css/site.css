@@ -2,39 +2,39 @@
 
 /* Custom CSS for the application */
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
-body{
+body {
 	background-color: rgb(31, 57, 69);
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0 auto;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
-a{
+a {
 	color: #eadbdb;
 	text-decoration: none !important;
 }
 
-#wrapper{
-	color: #cfcfcf;
-//	padding: 2px
+#wrapper {
+	color: #cfcfcf; //
+	padding: 2px
 }
-	
-.panel-default > .panel-heading {
-    background-color: #3b92aa;
+
+.panel-default>.panel-heading {
+	background-color: #3b92aa;
 }
-	
+
 .navbar {
-    border-radius: 0px;
+	border-radius: 0px;
 }
 
 #main-content-box {
@@ -43,60 +43,61 @@ a{
 	padding: 5px;
 }
 
-
 /* login box starts */
-.forgot-password{
-	font-size: 80%; 
-	position: relative; 
+.forgot-password {
+	font-size: 80%;
+	position: relative;
 	top: -24px;
 	color: #eadbdb;
 }
 
 .forgot-password-link {
-    color: #eadbdb;
-    text-decoration: none !important;
+	color: #eadbdb;
+	text-decoration: none !important;
 }
 
-.forgot-password-link:hover{
-	color:white;
+.forgot-password-link:hover {
+	color: white;
 }
-#loginbox{
+
+#loginbox {
 	margin-top: 20px;
 }
 
-#login-panel-body{
+#login-panel-body {
 	padding-top: 30px
 }
-.login-input{
+
+.login-input {
 	margin-bottom: 25px
 }
 
-.panel-info > .panel-heading {
-    color: #31708f;
-    background-color: #103f6c;
-    border-color: #077b19;
+.panel-info>.panel-heading {
+	color: #31708f;
+	background-color: #103f6c;
+	border-color: #077b19;
 }
 
 .panel-title {
-    color: #eadbdb;
+	color: #eadbdb;
 }
 /* login box ends */
 
 /* footer page starts */
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 15%;
-  background-color: #333333;
-  color:#FFFFFF;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 15%;
+	background-color: #333333;
+	color: #FFFFFF;
 }
 
-.footer-content{
-    text-align: center;
-    padding: 5px;
-    margin-top:8px;
+.footer-content {
+	text-align: center;
+	padding: 5px;
+	margin-top: 8px;
 }
 /* footer page ends */
 
@@ -104,16 +105,43 @@ a{
 .h1 small {
 	font-size: 24px;
 }
-.contact-message{
-	text-align:right;
+
+.contact-message {
+	text-align: right;
 }
-.contact-message-panel{
-	border: 1px solid #709ff2;	
+
+.contact-message-panel {
+	border: 1px solid #709ff2;
 }
 /* contact page ends */
 
 /* blog page starts */
-.most-popular-blog{
+.most-popular-blog {
 	background-color: #bec8cb !important;
+}
+
+.blog-panel {
+	margin-left: 10px;
+}
+
+.title-heading {
+	font-weight: bold;
+	font-size: xx-large;
+}
+
+.published-on {
+	font-size: small;
+	font-style: italic;
+	margin: -10px 0px;
+}
+
+.blog-visit{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top: 25px;
+}
+
+.blog-visit-li {
+	display:inline-block;
 }
 /* blog page ends */

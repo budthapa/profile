@@ -29,13 +29,13 @@ public class Blog implements Serializable{
 	@Size(min=3,max=255, message="blog.title.invalid")
 	private String title;
 	
-	@Size(min=3,max=5000)
+	@Size(min=3,max=20000)
 	@NotNull
 	private String description;
 	
-	private LocalDate create_date=LocalDate.now();
+	private LocalDate createDate=LocalDate.now();
 	
-	private LocalDate update_date;
+	private LocalDate updateDate;
 	
 	private int view_count;
 	
@@ -74,20 +74,20 @@ public class Blog implements Serializable{
 		this.description = description;
 	}
 
-	public LocalDate getCreate_date() {
-		return create_date;
+	public LocalDate getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(LocalDate create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
 	}
 
-	public LocalDate getUpdate_date() {
-		return update_date;
+	public LocalDate getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setUpdate_date(LocalDate update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(LocalDate updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public int getView_count() {
