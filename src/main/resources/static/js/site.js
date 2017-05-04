@@ -13,6 +13,7 @@ $().ready(function(){
     		  title: "Are you sure you want to delete?",
     		  text: "You will not be able to recover this process!",
     		  type: "warning",
+    		  timer: 5000,
     		  showCancelButton: true,
     		  confirmButtonColor: "#DD6B55",
     		  confirmButtonText: "Yes, delete it!",
@@ -23,7 +24,7 @@ $().ready(function(){
     		function(isConfirm){
     			if (isConfirm) {
     				$("#delete-form").submit();
-    				swal("Deleted!", "Record has been deleted.", "success");
+    				//swal("Deleted!", "Record has been deleted.", "success");
     			} else {
     			    swal("Cancelled", "Record not deleted", "error");
     			}

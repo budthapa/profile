@@ -1,20 +1,24 @@
 @CHARSET "UTF-8";
 
 /* Custom CSS for the application */
-html {
-	position: relative;
-	min-height: 100%;
+ 
+html, body {
 	background-color:#efefef;
-}
-
-body {
-	background-color: #efefef;
+  	height: 100%;
+  	margin: 0;
 	font-size: 16px;
 	line-height: 24px;
-	margin: 0 auto;
-	/* Margin bottom by footer height */
-	margin-bottom: 60px;
 }
+
+/* keep footer at buttom */
+.content {
+  min-height: calc(100vh - 70px);
+}
+
+.footer {
+  height: 50px;
+}
+/* footer ends */
 
 ul {
 	list-style-type: none;
@@ -23,11 +27,6 @@ ul {
 a {
 	/* color: #eadbdb; */
 	text-decoration: none !important;
-}
-
-#wrapper {
-	/* color: #cfcfcf; */ //
-	padding: 2px
 }
 
 .panel-default>.panel-heading {
@@ -86,11 +85,7 @@ a {
 
 /* footer page starts */
 .footer {
-	position: absolute;
-	bottom: 0;
-	
-	/*Set the fixed height of the footer here
-	height: 15%; */
+	height: 15%;
 	width: 100%;
 	background-color: #333333;
 	color: #FFFFFF;
