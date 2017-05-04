@@ -18,9 +18,9 @@
 				</div>
 			</div>
 			<!-- blog form starts -->
-			<form th:action="@{/blog/new}" th:method="post" th:object="${blog}" role="form" class="form-horizontal">
-				<div th:if="${blogSaved}" class="alert alert-success">
-					<span th:text="#{blog.save.success}"></span>
+			<form th:action="@{/blog/edit/{id}(id=${blog.id})}" th:method="post" th:object="${blog}" role="form" class="form-horizontal">
+				<div th:if="${blogUpdated}" class="alert alert-success">
+					<span th:text="#{blog.update.success}"></span>
 				</div>
 				<div th:if="${blogNotFound}" class="alert alert-danger alert-dismissable fade in">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -55,7 +55,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-success">Update Blog</button>
 					</div>
 				</div>
 			</form>

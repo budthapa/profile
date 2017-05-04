@@ -31,9 +31,12 @@ public class BlogServiceImpl implements BlogService{
 	}
 
 	@Override
-	public Blog updateBlog(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Blog updateBlog(Blog blog) {
+		return blogRepository.save(blog);
+	}
+	
+	public void deleteBlog(Long id){
+		blogRepository.delete(id);
 	}
 
 }

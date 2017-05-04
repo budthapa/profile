@@ -19,6 +19,11 @@
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<span th:text="#{blog.not.found}"></span>
 						</div>
+						<div th:if="${blogDeleted}"
+							class="alert alert-success alert-dismissable fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<span th:text="#{blog.delete.success}"></span>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>
@@ -31,8 +36,15 @@
 								<tr th:each="blog : ${blogs}">
 									<td><a th:href="@{/blog/show/{id}(id=${blog.id})}"
 										th:text="${blog.title}"></a></td>
-									<td><a th:href="@{/blog/edit/{id}(id=${blog.id})}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-									<td><i class="fa fa-trash" aria-hidden="true"></i></td>
+									<td><a th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
+										<i class="fa fa-pencil" aria-hidden="true"></i>
+										</a>
+									</td>
+									<td>
+									<a th:href="@{/blog/delete/{id}(id=${blog.id})}" class="red">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+										</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
