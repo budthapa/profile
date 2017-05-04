@@ -11,6 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<p th:text="#{blog.all}"></p>
+						<p><a th:text="#{blog.new}" th:href="@{/blog/new}"></a></p>
 					</div>
 					<div class="panel-body">
 						<div th:if="${blogNotFound}"
@@ -22,12 +23,16 @@
 							<thead>
 								<tr>
 									<th>Title</th>
+									<th>Edit</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="blog : ${blogs}">
 									<td><a th:href="@{/blog/show/{id}(id=${blog.id})}"
 										th:text="${blog.title}"></a></td>
+									<td><a th:href="@{/blog/edit/{id}(id=${blog.id})}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+									<td><i class="fa fa-trash" aria-hidden="true"></i></td>
 								</tr>
 							</tbody>
 						</table>

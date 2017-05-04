@@ -144,4 +144,16 @@ a {
 .blog-visit-li {
 	display:inline-block;
 }
+
+.new-blog-header {
+    background-color: #0e2342;
+    //text-align: right;
+    color: #e9e7e7;
+    margin: 8px 0px;
+    padding: 10px;
+}
+
+.view-all-blog-header{
+	text-align: right !important;
+}
 /* blog page ends */

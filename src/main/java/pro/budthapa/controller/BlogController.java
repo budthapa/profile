@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Blog;
-import pro.budthapa.domain.Category;
 import pro.budthapa.service.BlogService;
 import pro.budthapa.service.CategoryService;
 
@@ -20,7 +19,7 @@ public class BlogController {
 	private static final String ADD_NEW_BLOG = "blog/addBlog";
 	private static final String INDEX_PAGE = "blog/index";
 	private static final String SHOW_BLOG_PAGE = "blog/showBlog";
-
+	private static final String EDIT_BLOG_PAGE = "blog/editBlog";
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -64,5 +63,16 @@ public class BlogController {
 		model.addAttribute("blogNotFound",true);
 		model.addAttribute("blogs",blogService.findAllBlogs());
 		return INDEX_PAGE;			
+	}
+	
+	@GetMapping("/blog/edit/{id}")
+	public String editBlog(@PathVariable Long id, Model model, Blog blog){
+		blog = blogService.findBlogById(id);
+		if(blog!=null){
+			model.addAttribute("blog",blog);
+			return EDIT_BLOG_PAGE;			
+		}
+		model.addAttribute("blogNotFound",true);
+		return EDIT_BLOG_PAGE;			
 	}
 }

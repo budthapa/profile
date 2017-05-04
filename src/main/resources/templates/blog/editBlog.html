@@ -10,9 +10,10 @@
 		<section layout:fragment="content">
 			<div class="row new-blog-header">
 				<div class="col-xs-6 pull-left">
-					<span th:text="#{blog.new}"></span>
+					<span th:text="#{blog.edit}"></span>
 				</div>
 				<div class="col-xs-6 view-all-blog-header">
+					<span><a th:href="@{/blog/new}" th:text="#{blog.new}"></a></span>&nbsp;
 					<span><a th:href="@{/blog/all}" th:text="#{blog.all}"></a></span>
 				</div>
 			</div>
@@ -20,6 +21,10 @@
 			<form th:action="@{/blog/new}" th:method="post" th:object="${blog}" role="form" class="form-horizontal">
 				<div th:if="${blogSaved}" class="alert alert-success">
 					<span th:text="#{blog.save.success}"></span>
+				</div>
+				<div th:if="${blogNotFound}" class="alert alert-danger alert-dismissable fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<span th:text="#{blog.not.found}"></span>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">Title:</label>
