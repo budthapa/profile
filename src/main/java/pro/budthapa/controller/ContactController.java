@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Contact;
@@ -17,6 +18,7 @@ public class ContactController {
 	
 	private static final String INDEX_PAGE = "contact/index";
 	private static final String CONTACT_PAGE = "contact";
+	private static final String SHOW_MESSAGE_PAGE = "contact/showContact";
 
 	@Autowired
 	private ContactService contactService;
@@ -35,5 +37,11 @@ public class ContactController {
 		}
 		
 		return CONTACT_PAGE;
+	}
+	
+	@GetMapping("/contact/message/{id}")
+	public String viewMessage(@PathVariable Long id, Model model){
+		model.addAttribute("message",contactService.findContactById(id));
+		return SHOW_MESSAGE_PAGE;
 	}
 }

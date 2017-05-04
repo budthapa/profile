@@ -104,4 +104,10 @@ a{
 .h1 small {
 	font-size: 24px;
 }
+.contact-message{
+	text-align:right;
+}
+.contact-message-panel{
+	border: 1px solid #709ff2;	
+}
 /* contact page ends */

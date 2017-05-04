@@ -24,4 +24,9 @@ public class ContactServiceImpl implements ContactService{
 		return contactRepository.findAllByOrderByDateDesc();
 	}
 
+	@Override
+	public Contact findContactById(Long id) {
+		return contactRepository.findOne(id);
+	}
+
 }

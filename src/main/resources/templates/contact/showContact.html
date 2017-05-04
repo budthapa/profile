@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{contact.read}"></title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p th:text="#{contact.read}"></p>
+					<a th:href="@{/contact/all}" th:text="#{contact.all}"></a>
+				</div>
+				<div class="panel-body contact-message-panel">
+					<div class="col-xs-3 contact-message">
+						<p>Sender</p>
+						<p>Email</p>
+						<p>Date</p>
+						<p>Subject</p>
+						<p>Message</p>
+					</div>
+					<div class="col-xs-9">
+						<p th:text="${message.name}"></p>
+						<p th:text="${message.email}"></p>
+						<p th:text="${message.date}"></p>
+						<p th:text="${message.subject}"></p>
+						<p th:utext="${message.message}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

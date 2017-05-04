@@ -7,4 +7,5 @@ import pro.budthapa.domain.Contact;
 public interface ContactService {
 	public List<Contact> findAllContact();
 	public Contact saveContact(Contact contact);
+	public Contact findContactById(Long id);
 }
