@@ -26,10 +26,10 @@ public class Blog implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Size(min=3,max=255, message="blog.title.invalid")
+	@Size(min=3,max=255, message="{blog.title.invalid}")
 	private String title;
 	
-	@Size(min=3,max=20000)
+	@Size(min=3,max=20000, message="{blog.description.invalid}")
 	@NotNull
 	private String description;
 	
@@ -47,7 +47,7 @@ public class Blog implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="category_id")
-	@NotNull
+	@NotNull(message="{category.invalid.select}")
 	private Category category;
 
 	public Long getId() {

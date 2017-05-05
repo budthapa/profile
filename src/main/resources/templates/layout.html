@@ -38,10 +38,17 @@
 						<li><a th:href="@{/blog/all}">Blog</a></li>
 						<li><a th:href="@{/contact}">Contact</a></li>
 					</ul>
+					<div th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+						<div th:if="${currentUser!=null}">
+						
 					<ul class="nav navbar-nav navbar-right">
-						<li><a th:href="@{/login}"><span
-								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a th:href="@{/user}"><span class="glyphicon glyphicon-user"></span>&nbsp;
+						<span th:text="${currentUser}"></span></a></li>
+						<li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
+						<li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
 					</ul>
+						</div>
+					</div>
 				</div>
 				<!--/.nav-collapse -->
 			</div>
@@ -102,13 +109,16 @@
 	<script>
 		tinymce.init({
 			selector : "textarea",
+			editor_deselector : "mceNoEditor",
 			plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap lists paste preview spellchecker",
 			toolbar: "image media codesample code forecolor backcolor emoticons charmap media",
 			media_live_embeds: true
 			
+			
 		});
-	</script>
 
+	</script>
+	
 	<script th:src="@{https://use.fontawesome.com/acd9b24c0b.js}"></script>
 	<script
 		th:src="@{https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js}"></script>

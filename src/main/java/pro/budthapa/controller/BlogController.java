@@ -96,10 +96,11 @@ public class BlogController {
 
 	@PostMapping("/blog/delete/{id}")
 	public String deleteBlog(@PathVariable Long id, Model model, Blog blog) {
-		blogService.deleteBlog(id);
+		System.out.println("blog id: "+id);
+//		blogService.deleteBlog(id);
 		model.addAttribute("blogDeleted", true);
 		model.addAttribute("blogs", blogService.findAllBlogs());
-		return INDEX_PAGE;
+		return "redirect:/blog/all";
 	}
 
 }

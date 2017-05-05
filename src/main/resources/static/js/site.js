@@ -13,7 +13,7 @@ $().ready(function(){
     		  title: "Are you sure you want to delete?",
     		  text: "You will not be able to recover this process!",
     		  type: "warning",
-    		  timer: 5000,
+    		  timer: 3000,
     		  showCancelButton: true,
     		  confirmButtonColor: "#DD6B55",
     		  confirmButtonText: "Yes, delete it!",
@@ -31,3 +31,5 @@ $().ready(function(){
     		});
     });
 });
+
+tinymce.execCommand('mceRemoveControl', true, 'contact-textarea');

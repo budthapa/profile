@@ -1,7 +1,7 @@
 package pro.budthapa.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,7 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -29,14 +34,20 @@ public class User implements Serializable{
 	private Long id;
 	
 	@NotBlank
+	@Size(min=3, max=60, message="{name.invalid}")
 	private String name;
 	
-	@Email
+	@Email(message="{email.invalid}")
 	private String email;
 	
+	@Size(min=8, max=16, message="{password.invalid}")
 	private String password;
+
+	@NotBlank
+	@Transient
+	private String plainPassword;
 	
-	private Date joinDate;
+	private LocalDate joinDate=LocalDate.now();
 	
 	private boolean active=true;
 	
@@ -45,6 +56,10 @@ public class User implements Serializable{
 	private String address;
 	private String contact;
 	private String imageUrl;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="user_role", joinColumns =  @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Set<Blog> Blog;
@@ -64,7 +79,7 @@ public class User implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getEmail() {
@@ -85,11 +100,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public Date getJoinDate() {
+	public LocalDate getJoinDate() {
 		return joinDate;
 	}
 
-	public void setJoinDate(Date joinDate) {
+	public void setJoinDate(LocalDate joinDate) {
 		this.joinDate = joinDate;
 	}
 
@@ -139,6 +154,22 @@ public class User implements Serializable{
 
 	public void setBlog(Set<Blog> blog) {
 		Blog = blog;
+	}
+
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	
