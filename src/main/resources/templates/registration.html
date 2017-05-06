@@ -10,6 +10,10 @@
 		<section layout:fragment="content">
 			<div class="container">
 				<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+							<div th:if="${registrationSuccess}">
+								<p th:text="#{register.success}" class="alert alert-success"></p>
+								<p th:text="#{activation.link.sent}" class="alert alert-info"></p>
+							</div>
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<div class="panel-title">
@@ -25,9 +29,6 @@
 						<div class="panel-body" id="login-panel-body">
 							<div th:if="${accountExists}" class="alert alert-danger">
 								<span th:text="#{account.exists}"></span>
-							</div>
-							<div th:if="${registrationSuccess}" class="alert alert-success">
-								<span th:text="#{register.success}"></span>
 							</div>
 							<div th:if="${invalidEmail}" class="alert alert-danger">
 								<span th:text="#{email.invalid}"></span>
