@@ -81,6 +81,9 @@ a {
 .panel-title {
 	color: #eadbdb;
 }
+.login-button{
+	width:100%
+}
 /* login box ends */
 
 /* footer page starts */
@@ -162,3 +165,13 @@ a {
 	color:red;
 }
 /* blog page ends */
+
+/* register page starts */
+.login-link{
+	position: relative;
+	top: -24px;
+}
+.login-link>a:hover{
+	color:white !important;
+}
+/* register page starts */

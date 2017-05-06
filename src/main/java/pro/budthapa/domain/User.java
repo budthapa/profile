@@ -40,16 +40,16 @@ public class User implements Serializable{
 	@Email(message="{email.invalid}")
 	private String email;
 	
-	@Size(min=8, max=16, message="{password.invalid}")
 	private String password;
 
 	@NotBlank
 	@Transient
+	@Size(min=8, max=16, message="{password.invalid}")
 	private String plainPassword;
 	
 	private LocalDate joinDate=LocalDate.now();
 	
-	private boolean active=true;
+	private boolean active;
 	
 	private String role;
 	

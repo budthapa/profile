@@ -32,4 +32,9 @@ $().ready(function(){
     });
 });
 
-tinymce.execCommand('mceRemoveControl', true, 'contact-textarea');
+$(document).ready(function() {
+    // show the alert
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 4000);
+});
