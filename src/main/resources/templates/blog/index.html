@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
 <title>All Blogs</title>
@@ -11,7 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<p th:text="#{blog.all}"></p>
-						<p><a th:text="#{blog.new}" th:href="@{/blog/new}"></a></p>
+						<p sec:authorize="hasAuthority('ADMIN')"><a th:text="#{blog.new}" th:href="@{/blog/new}"></a></p>
 					</div>
 					<div class="panel-body">
 						<div th:if="${blogNotFound}"
@@ -28,19 +28,19 @@
 							<thead>
 								<tr>
 									<th>Title</th>
-									<th>Edit</th>
-									<th>Delete</th>
+									<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+									<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="blog : ${blogs}">
 									<td><a th:href="@{/blog/show/{id}(id=${blog.id})}"
 										th:text="${blog.title}"></a></td>
-									<td><a th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
+									<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 										</a>
 									</td>
-									<td>
+									<td sec:authorize="hasAuthority('ADMIN')">
 										<form id="delete-form" th:method="post" th:action="@{/blog/delete/{id}(id=${blog.id})}">
 										<!-- onsubmit="return confirm('Do you really want to submit the form?');" -->
 											<button type="button" class="btn btn-danger delete-confirm">

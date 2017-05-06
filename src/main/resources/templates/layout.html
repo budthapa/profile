@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <title layout:title-pattern="$CONTENT_TITLE :: $LAYOUT_TITLE">Buddhi
 	Bal Thapa</title>
@@ -18,43 +18,67 @@
 </head>
 <body>
 	<div class="content">
-	<header>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" th:href="@{/}">Project name</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a th:href="@{/resume}">Resume</a></li>
-						<li><a th:href="@{/project}">Project</a></li>
-						<li><a th:href="@{/blog/all}">Blog</a></li>
-						<li><a th:href="@{/contact}">Contact</a></li>
-					</ul>
-					<div th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-						<div th:if="${currentUser!=null}">
-						
-					<ul class="nav navbar-nav navbar-right">
-						<li><a th:href="@{/user}"><span class="glyphicon glyphicon-user"></span>&nbsp;
-						<span th:text="${currentUser}"></span></a></li>
-						<li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
-						<li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
-					</ul>
+		<header>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" th:href="@{/}">Project name</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li><a th:href="@{/resume}">Resume</a></li>
+							<li><a th:href="@{/project}">Project</a></li>
+
+							<li class="dropdown">
+								<a class="dropdown-toggle" th:href="@{/blog/all}" data-toggle="dropdown" role="button" 
+								aria-haspopup="true" aria-expanded="false" >
+									Blog<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/blog/new}" th:text="#{blog.new}"></a></li>
+									<li><a th:href="@{/blog/all}" th:text="#{blog.all}">CSS</a></li>
+								</ul>
+							
+							</li>
+							
+							<li><a th:href="@{/contact}">Contact</a></li>
+
+							<li class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+								<a class="dropdown-toggle" th:href="@{#}" data-toggle="dropdown" role="button" 
+								aria-haspopup="true" aria-expanded="false" >
+									Category<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/category/new}" th:text="#{category.new}"></a></li>
+									<li><a th:href="@{/category/all}" th:text="#{category.all}">CSS</a></li>
+								</ul>
+							</li>
+
+						</ul>
+						<div th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+							<div th:if="${currentUser!=null}">
+								<ul class="nav navbar-nav navbar-right">
+									<li><a th:href="@{/dashboard}"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;Dashboard</a></li>
+									<li><a th:href="@{/user}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; <span
+											th:text="${currentUser}"></span></a></li>
+									<!-- <li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li> -->
+									<li><a th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
+					<!--/.nav-collapse -->
 				</div>
-				<!--/.nav-collapse -->
-			</div>
-			<!--/.container-fluid -->
-		</nav>
-	</header>
+				<!--/.container-fluid -->
+			</nav>
+		</header>
 		<div class="container">
 			<div class="row" id="main-content-box">
 				<section layout:fragment="content">
@@ -62,7 +86,7 @@
 				</section>
 			</div>
 		</div>
-	
+
 	</div>
 	<footer class="footer">
 		<div class="container">
@@ -107,18 +131,17 @@
 	<script
 		th:src="@{https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=167sq66d9ziwmz72cf7lwhrmcz4fetfkcx5syxgvoou9ywpw}"></script>
 	<script>
-		tinymce.init({
-			selector : "textarea",
-			editor_deselector : "mceNoEditor",
-			plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap paste preview spellchecker advlist",
-			toolbar: "image media codesample code forecolor backcolor emoticons charmap media",
-			media_live_embeds: true
-			
-			
-		});
+		tinymce
+				.init({
+					selector : "textarea",
+					editor_deselector : "mceNoEditor",
+					plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap paste preview spellchecker advlist",
+					toolbar : "image media codesample code forecolor backcolor emoticons charmap media",
+					media_live_embeds : true
 
+				});
 	</script>
-	
+
 	<script th:src="@{https://use.fontawesome.com/acd9b24c0b.js}"></script>
 	<script
 		th:src="@{https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js}"></script>

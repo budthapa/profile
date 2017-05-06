@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
-				.antMatchers("/category/**","/blog/**","/contact/all").hasAuthority("ADMIN").anyRequest()
+				.antMatchers("/category/**","/blog/**","/contact/all","/dashboard").hasAuthority("ADMIN").anyRequest()
 				.authenticated()
 			.and()
 				.formLogin()
@@ -64,8 +65,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private String[] PUBLIC_MATCHERS={
 		"/","/css/**","/image/**","/js/**","/login", "/register/**",
-		"/contact","/contact/new","/resume","project","/blog/all"
+		"/contact","/contact/new","/resume","project","/blog/all", "/blog/show/**"
 		
 	};
 	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
 }
