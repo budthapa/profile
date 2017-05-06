@@ -57,6 +57,8 @@ public class User implements Serializable{
 	private String contact;
 	private String imageUrl;
 	
+	private String authenticationCode;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="user_role", joinColumns =  @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
@@ -172,6 +174,13 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 
-	
+	public String getAuthenticationCode() {
+		return authenticationCode;
+	}
+
+	public void setAuthenticationCode(String authenticationCode) {
+		this.authenticationCode = authenticationCode;
+	}
+
 	
 }

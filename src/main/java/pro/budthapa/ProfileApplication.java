@@ -5,9 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 @SpringBootApplication
+@EnableEmailTools
 public class ProfileApplication {
 
 	public static void main(String[] args) {

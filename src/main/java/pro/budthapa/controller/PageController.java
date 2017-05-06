@@ -1,5 +1,9 @@
 package pro.budthapa.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -17,11 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pro.budthapa.domain.Contact;
 import pro.budthapa.domain.Register;
 import pro.budthapa.domain.User;
+import pro.budthapa.service.EmailHelperService;
 import pro.budthapa.service.UserService;
 
 @Controller
 public class PageController {
-	
+	private final String HTTP_SCHEME = "http://";
+	private final String VERIFY = "/verify/";
 	Logger log = LoggerFactory.getLogger(PageController.class);
 	
 	private static final String INDEX_PAGE = "index";
@@ -38,6 +44,9 @@ public class PageController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private EmailHelperService emailHelper;
+	
 	@GetMapping("/")
 	public String index() {
 		return INDEX_PAGE;
@@ -76,12 +85,13 @@ public class PageController {
 	}
 
 	@PostMapping("/register")
-	public String registration(@Valid Register register, BindingResult result, Model model){
+	public String registration(@Valid Register register, BindingResult result, Model model, HttpServletRequest request) throws Exception{
 		model.addAttribute("register", register);
 		if(!result.hasErrors()){
 			EmailValidator emailValidator = EmailValidator.getInstance();
-			if(emailValidator.isValid(register.getEmail())){				
-				User registeredUser = userService.findUserByEmail(register.getEmail());
+			String registeredEmail = register.getEmail();
+			if(emailValidator.isValid(registeredEmail)){				
+				User registeredUser = userService.findUserByEmail(registeredEmail);
 
 				if(registeredUser!=null){
 					model.addAttribute("accountExists",true);
@@ -94,11 +104,20 @@ public class PageController {
 					log.info("Password is "+randomPassword);
 					user.setName("your name");
 					String hashedPassword = bCryptPasswordEncoder.encode(randomPassword);
-					log.info("Hashed password "+hashedPassword);
 					user.setPassword(hashedPassword); 
 					user.setPlainPassword(randomPassword);
 					user.setActive(false);
-					userService.saveUser(user);
+					
+					String uuid = UUID.randomUUID().toString();
+					user.setAuthenticationCode(uuid);
+					
+					String url = createUrl(uuid, request);
+
+					log.info(url);
+					
+					emailHelper.sendEmailWithoutTemplating(registeredEmail, url);
+					
+					//userService.saveUser(user);
 
 					model.addAttribute("registrationSuccess",true);
 					return REGISTRATION_PAGE;
@@ -109,5 +128,11 @@ public class PageController {
 		model.addAttribute("invalidEmail",true);
 		return REGISTRATION_PAGE;
 
+	}
+
+	private String createUrl(String uuid, HttpServletRequest request) {
+		String address = request.getLocalName(); 
+		String url = HTTP_SCHEME + address + VERIFY + uuid;
+		return url;
 	}
 }
