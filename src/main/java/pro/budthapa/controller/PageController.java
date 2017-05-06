@@ -1,6 +1,9 @@
 package pro.budthapa.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Contact;
@@ -97,7 +101,6 @@ public class PageController {
 					model.addAttribute("accountExists",true);
 					return REGISTRATION_PAGE;
 				}else{
-					//TODO: send registration email 
 					User user = new User();
 					user.setEmail(register.getEmail());
 					String randomPassword = RandomStringUtils.randomAlphanumeric(10); //send this password in email
@@ -115,9 +118,9 @@ public class PageController {
 
 					log.info(url);
 					
-					emailHelper.sendEmailWithoutTemplating(registeredEmail, url);
+					emailHelper.sendEmailWithoutTemplating(registeredEmail, url, randomPassword);
 					
-					//userService.saveUser(user);
+					userService.saveUser(user);
 
 					model.addAttribute("registrationSuccess",true);
 					return REGISTRATION_PAGE;
@@ -128,6 +131,33 @@ public class PageController {
 		model.addAttribute("invalidEmail",true);
 		return REGISTRATION_PAGE;
 
+	}
+	
+	@GetMapping("/verify/{authenticationCode}")
+	public String verifyAccount(@PathVariable String authenticationCode, Model model){
+		User user = userService.findUserByAuthenticationCode(authenticationCode);
+		if(user!=null){
+			LocalDate joinDate = user.getJoinDate();
+			LocalDate currentDate = LocalDate.now();
+			long daysDiff = ChronoUnit.DAYS.between(joinDate, currentDate);
+			if(user.isActive()){
+				model.addAttribute("accountAlreadyActivated",true);
+				return LOGIN_PAGE;
+			}else if(daysDiff == 0 && user.isActive()==false){
+				user.setActive(true);
+				//don't remove this line, this is not persisted in db, escaping validation
+				user.setPlainPassword("12345678"); 
+				userService.updateUser(user);
+				model.addAttribute("accountActivated",true);
+				return LOGIN_PAGE;
+			}else if(daysDiff != 0 && user.isActive()==false){
+				//TODO: RESEND ACTIVATION LINK IF USER LINK IS EXPIRED BUT USER IS NOT ACTIVATED
+				model.addAttribute("resendActivationLink",true);
+				return LOGIN_PAGE;
+			}
+		}
+		model.addAttribute("linkExpired",true);				
+		return LOGIN_PAGE;
 	}
 
 	private String createUrl(String uuid, HttpServletRequest request) {

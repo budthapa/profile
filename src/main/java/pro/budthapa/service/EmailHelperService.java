@@ -26,12 +26,12 @@ public class EmailHelperService {
 	public EmailService emailService;
 
 	
-	public void sendEmailWithoutTemplating(String registeredEmail, String messageBody) throws Exception{
+	public void sendEmailWithoutTemplating(String registeredEmail, String messageBody, String password) throws Exception{
 	   final Email email = DefaultEmail.builder()
 	        .from(new InternetAddress(FROM, FROM_NAME))
 	        .to(Lists.newArrayList(new InternetAddress(registeredEmail, "")))
 	        .subject(SUBJECT)
-	        .body("Please click the link to activate your account within 24 hours. "+messageBody)
+	        .body("Please click the link to activate your account within 24 hours. "+messageBody+" Your passwod is "+password)
 	        .encoding(ENCODING).build();
 
 	   emailService.send(email);
