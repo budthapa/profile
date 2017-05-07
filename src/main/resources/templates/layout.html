@@ -26,7 +26,7 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" th:href="@{/}">Home</a>
+						<a class="navbar-brand home-logo" th:href="@{/}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -91,9 +91,9 @@
 				<div class="row footer-content">
 					<div class="col-sm-4 hidden-xs">
 						<ul>
-							<li><a href="">Resume</a></li>
-							<li><a href="">Project</a></li>
-							<li><a href="">Blog</a></li>
+							<li><a th:href="@{/resume}">Resume</a></li>
+							<li><a th:href="@{/project}">Project</a></li>
+							<li><a th:href="@{/blog/all}">Blog</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-4">
@@ -132,8 +132,8 @@
 				.init({
 					selector : "textarea",
 					editor_deselector : "mceNoEditor",
-					plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap paste preview spellchecker advlist",
-					toolbar : "image media codesample code forecolor backcolor emoticons charmap media",
+					plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap paste preview spellchecker advlist link",
+					toolbar : "image media codesample code forecolor backcolor emoticons charmap media link",
 					media_live_embeds : true
 
 				});

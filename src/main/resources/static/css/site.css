@@ -37,6 +37,10 @@ a {
 	border-radius: 0px;
 }
 
+.home-logo{
+	margin-top: -8px;
+}
+
 #main-content-box {
 	/* background-color: #cecece; */
 	color: black;
