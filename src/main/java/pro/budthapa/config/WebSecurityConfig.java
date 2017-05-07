@@ -46,8 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
-				.antMatchers("/category/**","/blog/**","/contact/all","/dashboard","/project/**").hasAuthority("ADMIN").anyRequest()
-				.authenticated()
+				.antMatchers("/category/**","/blog/**","/contact/all","/project/**").hasAuthority("ADMIN")
+				.antMatchers("/dashboard/**").hasAnyAuthority("ADMIN","USER")
+				.anyRequest().authenticated()
 			.and()
 				.formLogin()
 				.loginPage("/login")
@@ -65,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private String[] PUBLIC_MATCHERS={
 		"/","/css/**","/image/**","/js/**","/login", "/register/**",
-		"/contact","/contact/new","/resume","/project","/blog/all", "/blog/show/**","/verify/**"
+		"/contact","/contact/new","/resume","/project","/blog/all", "/blog/show/**","/verify/**"//,"/dashboard"
 		
 	};
 	
