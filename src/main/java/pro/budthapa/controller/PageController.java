@@ -1,9 +1,7 @@
 package pro.budthapa.controller;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +29,7 @@ import pro.budthapa.service.UserService;
 @Controller
 public class PageController {
 	private final String HTTP_SCHEME = "http://";
+	private final String ADDRESS = "budthapa.pro";
 	private final String VERIFY = "/verify/";
 	Logger log = LoggerFactory.getLogger(PageController.class);
 	
@@ -161,8 +160,7 @@ public class PageController {
 	}
 
 	private String createUrl(String uuid, HttpServletRequest request) {
-		String address = request.getLocalName(); 
-		String url = HTTP_SCHEME + address + VERIFY + uuid;
+		String url = HTTP_SCHEME + ADDRESS + VERIFY + uuid;
 		return url;
 	}
 }
