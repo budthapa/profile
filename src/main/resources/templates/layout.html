@@ -130,15 +130,27 @@
 	<script
 		th:src="@{https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=167sq66d9ziwmz72cf7lwhrmcz4fetfkcx5syxgvoou9ywpw}"></script>
 	<script>
-		tinymce
-				.init({
-					selector : "textarea",
-					editor_deselector : "mceNoEditor",
-					plugins : "image imagetools media codesample code textcolor colorpicker emoticons wordcount autoresize charmap paste preview spellchecker advlist link",
-					toolbar : "image media codesample code forecolor backcolor emoticons charmap media link",
-					media_live_embeds : true
+	tinymce.init({
+		  selector: 'textarea',
+		  height: 500,
+		  theme: 'modern',
+		  plugins: [
+		    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+		    'searchreplace wordcount visualblocks visualchars code fullscreen',
+		    'insertdatetime media nonbreaking save table contextmenu directionality',
+		    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+		  ],
+		  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+		  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+		  image_advtab: true,
+		  templates: [
+		    { title: 'Test template 1', content: 'Test 1' },
+		    { title: 'Test template 2', content: 'Test 2' }
+		  ]
+		 });
+	
+	
 
-				});
 	</script>
 
 	<script th:src="@{https://use.fontawesome.com/acd9b24c0b.js}"></script>
