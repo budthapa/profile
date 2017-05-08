@@ -23,11 +23,5 @@ public class ProfileApplication {
 		messageSource.setBasename("i18n/messages");
 		return messageSource;
 	}
-/*
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
-	}
-	*/
+	
 }
