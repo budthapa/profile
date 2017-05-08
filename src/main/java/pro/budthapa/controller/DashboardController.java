@@ -20,7 +20,7 @@ public class DashboardController {
 	Logger log = LoggerFactory.getLogger(DashboardController.class);
 	public static final String INDEX_PAGE = "dashboard/index";
 	public static final String PROFILE_PAGE = "dashboard/profile";
-	private static final String REDIRECT = "redirect:/dashboard";
+	private static final String REDIRECT_TO_DASHBOARD = "redirect:/dashboard";
 
 	@Autowired
 	private UserService userService;
@@ -63,7 +63,7 @@ public class DashboardController {
 		}
 		
 		log.info("Trying to access invalid user id, redirecting now to dashboard.");
-		return REDIRECT;
+		return REDIRECT_TO_DASHBOARD;
 		/*
 		if(id != Long.parseLong(jedis.get("userId")) && jedis.get("email") != principal.getName()){
 			return REDIRECT;
