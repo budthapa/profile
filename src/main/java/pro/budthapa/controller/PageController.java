@@ -1,7 +1,5 @@
 package pro.budthapa.controller;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
@@ -85,7 +83,7 @@ public class PageController {
 	public String login() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)){
-			return INDEX_PAGE;
+			return "redirect:/";
 		}
 		return LOGIN_PAGE;			
 	}
