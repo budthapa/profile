@@ -10,19 +10,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationEventListener implements ApplicationListener<AbstractAuthenticationEvent> {
 
-   private static Logger logger = Logger.getLogger(AuthenticationEventListener.class);
+	private static Logger logger = Logger.getLogger(AuthenticationEventListener.class);
 
-   @Override
-   public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
-      if (authenticationEvent instanceof InteractiveAuthenticationSuccessEvent) {
-         // ignores to prevent duplicate logging with AuthenticationSuccessEvent
-         return;
-      }
-      Authentication authentication = authenticationEvent.getAuthentication();
-      logger.info(authentication.getDetails());
-      logger.info(authentication.getPrincipal());
-      String auditMessage = "Login attempt with username: " + authentication.getName() + " Success: " + authentication.isAuthenticated();
-      logger.info(auditMessage);
-   }
+	@Override
+	public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
+		if (authenticationEvent instanceof InteractiveAuthenticationSuccessEvent) {
+			// ignores to prevent duplicate logging with
+			// AuthenticationSuccessEvent
+			return;
+		}
+		Authentication authentication = authenticationEvent.getAuthentication();
+		logger.info(authentication.getDetails());
+		logger.info(authentication.getPrincipal());
+		String auditMessage = "Login attempt with username: " + authentication.getName() + " Success: "
+				+ authentication.isAuthenticated();
+
+		logger.info(auditMessage);
+	}
 
 }
