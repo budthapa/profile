@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout" >
 <head>
 <title>View Blog</title>
 </head>
@@ -85,11 +85,17 @@
 
 		</div>
 	</div>
+	<div class="containter" id="disqus-comment" layout:fragment="comment">
+		<div id="disqus_thread"></div>
+		<div th:replace="blog/disqusComment :: disqus-counter"></div>
+		<div th:replace="blog/disqusComment :: disqus-loader"></div>
+	</div>
+</body>
+	
 	<!-- 
 	<footer class="footer">
 		<div class="container">
 			<div layout:fragment="custom-footer"></div>
 		</div>
 	</footer> -->
-</body>
 </html>

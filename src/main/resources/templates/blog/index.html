@@ -34,7 +34,7 @@
 							</thead>
 							<tbody>
 								<tr th:each="blog : ${blogs}">
-									<td><a th:href="@{/blog/show/{id}(id=${blog.id})}"
+									<td><a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.title})}"
 										th:text="${blog.title}"></a></td>
 									<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
 										<i class="fa fa-pencil" aria-hidden="true"></i>

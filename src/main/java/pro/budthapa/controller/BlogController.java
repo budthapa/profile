@@ -55,7 +55,7 @@ public class BlogController {
 		return INDEX_PAGE;
 	}
 
-	@GetMapping("/blog/show/{id}")
+	@GetMapping("/blog/show/{id}/{blogTitle}")
 	public String findAllBlog(@PathVariable Long id, Model model) {
 		Blog blog = blogService.findBlogById(id);
 		if (blog != null) {

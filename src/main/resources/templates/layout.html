@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -84,9 +84,10 @@
 					<p>Page content goes here</p>
 				</section>
 			</div>
+			<div layout:fragment="comment"></div>
 		</div>
-
 	</div>
+	
 	<footer class="footer">
 		<div class="container">
 			<div layout:fragment="custom-footer">
@@ -169,6 +170,7 @@
  		ga('send', 'pageview');
 
 	</script>
+	
 </body>
 </html>
 

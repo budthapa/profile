@@ -179,3 +179,7 @@ a {
 	color:white !important;
 }
 /* register page starts */
+
+#disqus-comment{
+	width: 75%;
+}
