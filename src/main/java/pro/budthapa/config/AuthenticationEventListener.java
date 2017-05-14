@@ -1,7 +1,9 @@
 package pro.budthapa.config;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
@@ -12,6 +14,9 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 
 	private static Logger logger = Logger.getLogger(AuthenticationEventListener.class);
 
+	@Autowired
+	RedisTemplate<String, Object> template;
+	
 	@Override
 	public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
 		if (authenticationEvent instanceof InteractiveAuthenticationSuccessEvent) {
@@ -26,6 +31,9 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 				+ authentication.isAuthenticated();
 
 		logger.info(auditMessage);
+		if(authentication.isAuthenticated()){
+			template.opsForValue().set("loggedInEmail", authentication.getName());			
+		}
 	}
 
 }

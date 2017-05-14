@@ -2,6 +2,7 @@ package pro.budthapa.controller;
 
 import java.time.LocalDate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,10 @@ public class BlogController {
 	}
 
 	@GetMapping("/blog/show/{id}/{blogTitle}")
-	public String findAllBlog(@PathVariable Long id, Model model) {
+	public String findAllBlog(@PathVariable Long id, Model model, HttpServletRequest request) {
 		Blog blog = blogService.findBlogById(id);
+		System.out.println("session :"+request.getSession().getId());
+		System.out.println("ip add "+request.getRemoteAddr());
 		if (blog != null) {
 			model.addAttribute("blog", blog);
 			return SHOW_BLOG_PAGE;

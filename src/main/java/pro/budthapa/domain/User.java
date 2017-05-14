@@ -42,10 +42,15 @@ public class User implements Serializable{
 	
 	private String password;
 
-	@NotBlank
+//	@NotBlank
 	@Transient
 	@Size(min=8, max=16, message="{password.invalid}")
 	private String plainPassword;
+	
+//	@NotBlank
+	@Transient
+	@Size(min=8, max=16, message="{password.invalid}")
+	private String retypePassword;
 	
 	private LocalDate joinDate=LocalDate.now();
 	
@@ -58,6 +63,8 @@ public class User implements Serializable{
 	private String imageUrl;
 	
 	private String authenticationCode;
+	
+	private LocalDate updateDate;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="user_role", joinColumns =  @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -91,15 +98,13 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.trim();
 	}
 
 	public LocalDate getJoinDate() {
@@ -163,7 +168,7 @@ public class User implements Serializable{
 	}
 
 	public void setPlainPassword(String plainPassword) {
-		this.plainPassword = plainPassword;
+		this.plainPassword = plainPassword.trim();
 	}
 
 	public Set<Role> getRoles() {
@@ -180,6 +185,22 @@ public class User implements Serializable{
 
 	public void setAuthenticationCode(String authenticationCode) {
 		this.authenticationCode = authenticationCode;
+	}
+
+	public String getRetypePassword() {
+		return retypePassword;
+	}
+
+	public void setRetypePassword(String retypePassword) {
+		this.retypePassword = retypePassword.trim();
+	}
+
+	public LocalDate getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDate updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	
