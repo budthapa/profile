@@ -32,7 +32,7 @@ a {
 .panel-default>.panel-heading {
 	background-color: #e7e8e9;
 }
-
+/* navbar starts */
 .navbar {
 	border-radius: 0px;
 }
@@ -41,6 +41,22 @@ a {
 	margin-top: -8px;
 }
 
+.navbar-side {
+	border: none;
+	background-color: #fff;
+}
+
+.navbar-inverse {
+	background-color: #214761;
+	border-color: #F0F0F0;
+	min-height: 70px;
+}
+
+.nav>li>a>i {
+	margin-right: 10px;
+}
+
+/* navbar ends */
 #main-content-box {
 	/* background-color: #cecece; */
 	color: black;
@@ -152,7 +168,7 @@ a {
 
 .new-blog-header {
     background-color: #0e2342;
-    //text-align: right;
+    /* text-align: right; */
     color: #e9e7e7;
     margin: 8px 0px;
     padding: 10px;
