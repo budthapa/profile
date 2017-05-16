@@ -38,3 +38,7 @@ $(document).ready(function() {
         $(".alert").alert('close');
     }, 4000);
 });
+
+$(document).ready(function(){
+	$(".access-denied").effect("shake");
+});

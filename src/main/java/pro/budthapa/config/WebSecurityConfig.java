@@ -48,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
 				.antMatchers("/category/**","/blog/**","/contact/all","/project/**","/resume/new","/resume/edit").hasAuthority("ADMIN")
 				.antMatchers("/dashboard/**").hasAnyAuthority("ADMIN","USER")
-				.antMatchers("/error").anonymous()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()
@@ -62,7 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/")
 			.and()
 				.exceptionHandling()
-				.accessDeniedPage("/403");
+//				.accessDeniedPage("/error/403.html");
+				.accessDeniedPage("/access-denied");
 	}
 	
 	private String[] PUBLIC_MATCHERS={

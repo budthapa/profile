@@ -1,5 +1,6 @@
 package pro.budthapa.controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
@@ -169,5 +170,11 @@ public class PageController {
 	private String createUrl(String uuid, HttpServletRequest request) {
 		String url = HTTP_SCHEME + ADDRESS + VERIFY + uuid;
 		return url;
+	}
+	
+	@GetMapping("/access-denied")
+	public String accessDenied403(Principal principal, Model model){
+		model.addAttribute("name",principal.getName());
+		return "error/403";
 	}
 }
