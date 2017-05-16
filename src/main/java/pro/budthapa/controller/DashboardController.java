@@ -42,20 +42,19 @@ public class DashboardController {
 
 	@GetMapping("/dashboard")
 	public String index(Model model, Principal principal) {
-		User user = userService.findUserByEmail(principal.getName());
-		model.addAttribute("userId", user.getId());
-
-		/*
-		 * Jedis jedis = new Jedis("localhost", 6379); jedis.set("userId",
-		 * String.valueOf(user.getId())); jedis.set("email", user.getEmail());
-		 * jedis.close();
-		 */
-		template.opsForValue().set("userId", user.getId());
-		template.opsForValue().set("email", user.getEmail());
-
-		if (principal.getName() != null) {
+		if (principal != null) {
+			User user = userService.findUserByEmail(principal.getName());
+			model.addAttribute("userId", user.getId());
+			/*
+			 * Jedis jedis = new Jedis("localhost", 6379); jedis.set("userId",
+			 * String.valueOf(user.getId())); jedis.set("email",
+			 * user.getEmail()); jedis.close();
+			 */
+			template.opsForValue().set("userId", user.getId());
+			template.opsForValue().set("email", user.getEmail());
 			return INDEX_PAGE;
 		}
+
 		return "redirect:/login";
 	}
 
@@ -110,16 +109,16 @@ public class DashboardController {
 
 				userDb.setPassword(hashedPassword);
 				userDb.setUpdateDate(LocalDate.now());
-				
+
 				userService.updateUser(userDb);
-				model.addAttribute("passwordChanged",true);
+				model.addAttribute("passwordChanged", true);
 
 			} else {
 				model.addAttribute("passwordMatches", passwordMatches);
 			}
 
 		}
-		
+
 		return CHANGE_PASSWORD;
 	}
 }

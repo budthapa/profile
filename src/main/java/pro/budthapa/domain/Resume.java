@@ -1,7 +1,7 @@
 package pro.budthapa.domain;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,14 +26,14 @@ public class Resume {
 	private LocalDate updatedDate;
 
 	@OneToMany(mappedBy="resume")
-	private Set<Education> education;
+	private List<Education> education;
 
 	@OneToMany(mappedBy="resume")
-	private Set<Career> career;
+	private List<Career> career;
 
 	@Column(name="user_email")
 	private String email;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -106,19 +106,19 @@ public class Resume {
 		this.updatedDate = updatedDate;
 	}
 
-	public Set<Education> getEducation() {
+	public List<Education> getEducation() {
 		return education;
 	}
 
-	public void setEducation(Set<Education> education) {
+	public void setEducation(List<Education> education) {
 		this.education = education;
 	}
 
-	public Set<Career> getCareer() {
+	public List<Career> getCareer() {
 		return career;
 	}
 
-	public void setCareer(Set<Career> career) {
+	public void setCareer(List<Career> career) {
 		this.career = career;
 	}
 
