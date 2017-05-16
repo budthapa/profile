@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
+<head>
+<title>404 Not Found</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="col-sm-6 col-sm-offset-3 text-center" style="margin-top: 30px;">
+				<h1 class="red">Oops! something went wrong.</h1>
+				<h3>The resource you are looking is not available</h3>
+				<a th:href="@{/}" class="btn btn-default">Go Home</a>
+				<img src="image/frowning.png" height="400px" width="400px" class="img-responsive center-block" alt="Resource not found: Buddhi Bal Thapa"/>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
