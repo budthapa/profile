@@ -74,7 +74,7 @@ public class User implements Serializable{
 	private Set<Blog> Blog;
 
 	public User(){}
-
+	
 	public Long getId() {
 		return id;
 	}

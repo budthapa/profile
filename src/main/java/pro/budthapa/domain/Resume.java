@@ -22,7 +22,7 @@ public class Resume {
 	private String image;
 	private String about;
 	private String languageTools;
-	private LocalDate createdDate;
+	private LocalDate createdDate = LocalDate.now();
 	private LocalDate updatedDate;
 
 	@OneToMany(mappedBy="resume")
@@ -31,6 +31,9 @@ public class Resume {
 	@OneToMany(mappedBy="resume")
 	private Set<Career> career;
 
+	@Column(name="user_email")
+	private String email;
+	
 	public Long getId() {
 		return id;
 	}
@@ -117,6 +120,14 @@ public class Resume {
 
 	public void setCareer(Set<Career> career) {
 		this.career = career;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
