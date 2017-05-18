@@ -62,8 +62,8 @@ public class PageController {
 
 	@GetMapping("/")
 	public String index(Model model, HttpServletRequest request) throws IOException, GeoIp2Exception {
-//		 String ip =request.getRemoteAddr();
-		 String ip = "31.215.16.96"; //my public id
+		 String ip =request.getRemoteAddr();
+//		 String ip = "31.215.16.96"; //my public id
 //		 String ip = "206.190.36.45";
 //		String ip = "216.58.207.14"; // google.com
 //		 String ip = "96.30.12.176"; //hamrobazar.com

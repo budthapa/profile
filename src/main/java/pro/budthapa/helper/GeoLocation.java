@@ -26,8 +26,6 @@ public class GeoLocation {
 		geoLocationReader();
 
 		InetAddress ipAddress = InetAddress.getByName(ip);
-		System.out.println("ip " + ipAddress);
-
 		CityResponse response = dbr.city(ipAddress);
 
 		String cityName = response.getCity().getName();
