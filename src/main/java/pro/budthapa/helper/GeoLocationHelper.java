@@ -23,6 +23,8 @@ public class GeoLocationHelper {
 		this.latitude = latitude;
 	}
 
+	public GeoLocationHelper() {}
+
 	public String getCityName() {
 		return cityName;
 	}
