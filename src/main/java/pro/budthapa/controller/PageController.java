@@ -1,5 +1,6 @@
 package pro.budthapa.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -24,9 +25,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.maxmind.geoip2.exception.GeoIp2Exception;
+
 import pro.budthapa.domain.Contact;
 import pro.budthapa.domain.Register;
 import pro.budthapa.domain.User;
+import pro.budthapa.helper.GeoLocation;
+import pro.budthapa.helper.GeoLocationHelper;
 import pro.budthapa.service.EmailHelperService;
 import pro.budthapa.service.UserService;
 
@@ -55,7 +60,26 @@ public class PageController {
 	private EmailHelperService emailHelper;
 	
 	@GetMapping("/")
-	public String index() {
+	public String index(HttpServletRequest request) throws IOException, GeoIp2Exception {
+//		String ip =request.getRemoteAddr();
+//		String ip = "31.215.16.96"; //my public id
+//		String ip = "206.190.36.45";
+//		String ip = "216.58.207.14"; //google.com
+		String ip = "96.30.12.176"; //hamrobazar.com
+		
+		log.info("user location is : "+ip);
+		GeoLocation gl = new GeoLocation();
+		
+		GeoLocationHelper glHelper = gl.getLocation(ip);
+		
+		System.out.println("city "+glHelper.getCityName());
+		System.out.println("country "+glHelper.getCountry());
+		System.out.println("timezone "+glHelper.getTimeZone());
+		System.out.println("date "+glHelper.getCurrentUserDate());
+		System.out.println("time "+glHelper.getCurrentUserTime());
+		System.out.println("longitude "+glHelper.getLongitude());
+		System.out.println("latitude "+glHelper.getLatitude());
+		
 		return INDEX_PAGE;
 	}
 
