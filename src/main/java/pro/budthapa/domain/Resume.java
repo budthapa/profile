@@ -3,8 +3,10 @@ package pro.budthapa.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,11 +26,11 @@ public class Resume {
 	private String languageTools;
 	private LocalDate createdDate = LocalDate.now();
 	private LocalDate updatedDate;
-
-	@OneToMany(mappedBy="resume")
+	
+	@OneToMany(mappedBy="resume", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Education> education;
-
-	@OneToMany(mappedBy="resume")
+	
+	@OneToMany(mappedBy="resume", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Career> career;
 
 	@Column(name="user_email")

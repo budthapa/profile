@@ -2,6 +2,7 @@ package pro.budthapa.domain;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ public class Education {
 
 	private LocalDate updatedDate;
 
-	@ManyToOne
-	@JoinColumn(name="resume_id")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="resume_id",nullable = false)
 	private Resume resume;
 	
 	public Long getId() {
