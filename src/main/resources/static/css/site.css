@@ -1,25 +1,24 @@
-i@CHARSET "UTF-8";
+i
+ @CHARSET "UTF-8";
 
 /* Custom CSS for the application */
- 
 html, body {
-	background-color:#efefef;
-  	height: 100%;
-  	margin: 0;
+	background-color: #efefef;
+	height: 100%;
+	margin: 0;
 	font-size: 16px;
 	line-height: 24px;
 }
 
 /* keep footer at buttom */
 .content {
-  min-height: calc(100vh - 70px);
+	min-height: calc(100vh - 70px);
 }
 
 .footer {
-  height: 50px;
+	height: 50px;
 }
 /* footer ends */
-
 ul {
 	list-style-type: none;
 }
@@ -37,7 +36,7 @@ a {
 	border-radius: 0px;
 }
 
-.home-logo{
+.home-logo {
 	margin-top: -8px;
 }
 
@@ -103,8 +102,9 @@ a {
 .panel-title {
 	color: #eadbdb;
 }
-.login-button{
-	width:100%
+
+.login-button {
+	width: 100%
 }
 /* login box ends */
 
@@ -144,7 +144,7 @@ a {
 
 .blog-panel {
 	margin-left: 10px;
-	margin-top:10px;
+	margin-top: 10px;
 }
 
 .title-heading {
@@ -158,60 +158,69 @@ a {
 	margin: -10px 0px;
 }
 
-.blog-visit{
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    margin-top: 25px;
+.blog-visit {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	margin-top: 25px;
 }
 
 .blog-visit-li {
-	display:inline-block;
+	display: inline-block;
 }
 
 .new-blog-header {
-    background-color: #0e2342;
-    /* text-align: right; */
-    color: #e9e7e7;
-    margin: 8px 0px;
-    padding: 10px;
+	background-color: #0e2342;
+	/* text-align: right; */
+	color: #e9e7e7;
+	margin: 8px 0px;
+	padding: 10px;
 }
 
-.view-all-blog-header{
+.view-all-blog-header {
 	text-align: right !important;
 }
 
-.green{
-	color:green;
+.green {
+	color: green;
 }
-.red{
-	color:red;
+
+.red {
+	color: red;
 }
 /* blog page ends */
 
 /* register page starts */
-.login-link{
+.login-link {
 	position: relative;
 	top: -24px;
 }
-.login-link>a:hover{
-	color:white !important;
+
+.login-link>a:hover {
+	color: white !important;
 }
 /* register page starts */
-
-#disqus-comment{
+#disqus-comment {
 	width: 75%;
 }
 
-.share-this{
+.share-this {
 	margin-left: -30px;
-margin-top: 25px;
-margin-bottom: -20px;
+	margin-top: 25px;
+	margin-bottom: -20px;
 }
 
 /* langing page starts */
-.greeting-text{
+.greeting-text {
 	font-size: 2em;
-	background-color:rgba(30, 83, 31, 0.5);
-}	
+	background-color: rgba(30, 83, 31, 0.5);
+}
 
-/* langing page starts */
+@media screen and (max-device-width : 360px){
+  .greeting-text{
+    font-size:1.5em !important;
+  }
+}
+
+
+
+/* langing page stops */

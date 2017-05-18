@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous" />
-	<link rel="stylesheet" th:href="@{/css/site.css}" />
+	<link rel="stylesheet" th:href="@{/css/site.css}" media="screen" />
 	
 	<link rel="stylesheet" th:href="@{https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/sweetalert.css}" />
@@ -137,7 +137,7 @@
 					</div>
 					<div class="col-sm-4 hidden-xs">
 						<ul>
-							<li><a href="">github</a></li>
+							<li><a th:href="@{https://github.com/budthapa}" target="_blank">github</a></li>
 							<li><a href="">linkedin</a></li>
 							<li><a href="">twitter</a></li>
 						</ul>
