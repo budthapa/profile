@@ -1,16 +1,19 @@
 package pro.budthapa.helper;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class GeoLocationHelper {
 	private String cityName;
 	private String country;
 	private String timeZone;
 	private String longitude;
 	private String latitude;
-	private String currentUserDate;
-	private String currentUserTime;
+	private LocalDate currentUserDate;
+	private LocalTime currentUserTime;
 
-	public GeoLocationHelper(String cityName, String country, String timeZone, String currentUserDate, 
-			String currentUserTime, String longitude, String latitude) {
+	public GeoLocationHelper(String cityName, String country, String timeZone, LocalDate currentUserDate, 
+			LocalTime currentUserTime, String longitude, String latitude) {
 		this.cityName = cityName;
 		this.country = country;
 		this.timeZone = timeZone;
@@ -60,19 +63,19 @@ public class GeoLocationHelper {
 		this.timeZone = timeZone;
 	}
 
-	public String getCurrentUserTime() {
+	public LocalTime getCurrentUserTime() {
 		return currentUserTime;
 	}
 
-	public void setCurrentUserTime(String currentUserTime) {
+	public void setCurrentUserTime(LocalTime currentUserTime) {
 		this.currentUserTime = currentUserTime;
 	}
 
-	public String getCurrentUserDate() {
+	public LocalDate getCurrentUserDate() {
 		return currentUserDate;
 	}
 
-	public void setCurrentUserDate(String currentUserDate) {
+	public void setCurrentUserDate(LocalDate currentUserDate) {
 		this.currentUserDate = currentUserDate;
 	}
 

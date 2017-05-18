@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+i@CHARSET "UTF-8";
 
 /* Custom CSS for the application */
  
@@ -207,3 +207,11 @@ a {
 margin-top: 25px;
 margin-bottom: -20px;
 }
+
+/* langing page starts */
+.greeting-text{
+	font-size: 2em;
+	background-color:rgba(30, 83, 31, 0.5);
+}	
+
+/* langing page starts */

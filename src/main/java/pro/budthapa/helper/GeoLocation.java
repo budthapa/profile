@@ -12,7 +12,7 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 
 public class GeoLocation {
-	private String dbLocation = "/home/budthapa/Projects/";
+	private String dbLocation = "/home/budthapa/";
 	private String fileName = "GeoLite2-City.mmdb";
 	private DatabaseReader dbr;
 
@@ -35,14 +35,7 @@ public class GeoLocation {
 		String timeZone = response.getLocation().getTimeZone();
 		String latitude = response.getLocation().getLatitude().toString();
 		String longitude = response.getLocation().getLongitude().toString();
-		String currentUserDateTime[] = currentUserTime(timeZone);
-
-		return new GeoLocationHelper(cityName, countryName, timeZone, currentUserDateTime[0],
-				currentUserDateTime[1],longitude, latitude);
-
-	}
-
-	private String[] currentUserTime(String timeZone) {
+		
 		// Get zoneid wrt to supplied timezone
 		ZoneId zoneId = ZoneId.of(timeZone);
 		
@@ -50,8 +43,8 @@ public class GeoLocation {
 		LocalDate date = LocalDate.now(zoneId);
 		LocalTime time = LocalTime.now(zoneId);
 		
-		return new String[]{date.toString(),time.toString()};
-		
+		return new GeoLocationHelper(cityName, countryName, timeZone, date, time,longitude, latitude);
+
 	}
 
 }
