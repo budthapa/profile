@@ -10,6 +10,8 @@ import java.time.ZoneId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.bfsmith.geotimezone.TimeZoneLookup;
+import com.github.bfsmith.geotimezone.TimeZoneResult;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -62,9 +64,20 @@ public class GeoLocation {
 		String latitude = response.getLocation().getLatitude().toString();
 		String longitude = response.getLocation().getLongitude().toString();
 
-		// Get zoneid wrt to supplied timezone
-		ZoneId zoneId = ZoneId.of(timeZone);
-
+		ZoneId zoneId=null;
+		if (timeZone != null) {
+			// Get zoneid wrt to supplied timezone
+			zoneId = ZoneId.of(timeZone);
+		}else{
+			try {
+				TimeZoneResult result = new TimeZoneLookup().getTimeZone(Double.parseDouble(latitude), Double.parseDouble(longitude));
+				zoneId = ZoneId.of(result.getResult());
+				log.info("Using alternative approach to get zoneId. Nearest zone id is "+result.getResult());
+			} catch (Exception e) {
+				log.warn("ZoneId not found. Fallback to server zoneID : America/Los_Angeles");
+				zoneId = ZoneId.of("America/Los_Angeles");
+			}
+		}
 		// get zoned date time wrt supplied zoneid
 		LocalDate date = LocalDate.now(zoneId);
 		LocalTime time = LocalTime.now(zoneId);
