@@ -32,6 +32,45 @@ $().ready(function(){
     });
 });
 
+$(document).ready(function(){
+
+	
+	$(".save-confirm").click(function(){
+		 var form = $(this).parents('form');
+		swal({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, I\'ll save it!',
+			  cancelButtonText: 'No, cancel! I\'ll add more.',
+			  confirmButtonClass: 'btn btn-success',
+			  cancelButtonClass: 'btn btn-danger',
+			  buttonsStyling: false
+			}).then(function () {
+				form.submit();
+			  
+			}, function (dismiss) {
+			  // dismiss can be 'cancel', 'overlay',
+			  // 'close', and 'timer'
+			  if (dismiss === 'cancel') {
+			    swal(
+			      'Cancelled',
+			      'Your document is not saved :)',
+			      'error'
+			    )
+			  }
+			});
+		
+			e.preventDefault();
+	});
+	
+   
+});
+
+
 $(document).ready(function() {
     // show the alert
     setTimeout(function() {

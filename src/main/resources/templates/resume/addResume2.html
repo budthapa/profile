@@ -17,12 +17,12 @@
 							<p>My Resume</p>
 						</div>
 						<div class="col-sm-6">
-							<p class="pull-right">View Resume</p>
+							<p class="pull-right"><a th:href="@{/resume}">View Resume</a></p>
 						</div>
 					</div>
 				</div>
 				<div class="panel-body">
-				<div th:if="${resumeSaved}" class="alert alert-success">
+				<div th:if="${resumeSaved}" class="alert alert-success" id="resume-form">
 						<p>Resume Saved Successfully</p>
 					</div>
 					<form th:action="@{/resume/new}" th:method="post" th:object="${resume}" class="form-horizontal" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
 						
 						<div class="form-group">
     						<div class="col-sm-offset-2 col-sm-10">
-      							<button type="submit" class="btn btn-success">Submit</button>
+      							<button type="button" class="btn btn-success save-confirm">Save Resume</button>
 						    </div>
   						</div>
 					</form>
