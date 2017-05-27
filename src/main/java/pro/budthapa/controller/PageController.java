@@ -30,10 +30,12 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 
 import pro.budthapa.domain.Contact;
 import pro.budthapa.domain.Register;
+import pro.budthapa.domain.Resume;
 import pro.budthapa.domain.User;
 import pro.budthapa.helper.GeoLocation;
 import pro.budthapa.helper.GeoLocationHelper;
 import pro.budthapa.service.EmailHelperService;
+import pro.budthapa.service.ResumeService;
 import pro.budthapa.service.UserService;
 
 @Controller
@@ -50,7 +52,8 @@ public class PageController {
 	private static final String CONTACT_PAGE = "contact";
 	private static final String LOGIN_PAGE = "login";
 	private static final String REGISTRATION_PAGE = "registration";
-
+	private static final String USER_EMAIL = "budthapa@gmail.com";
+	
 	@Autowired
 	private UserService userService;
 
@@ -59,6 +62,9 @@ public class PageController {
 
 	@Autowired
 	private EmailHelperService emailHelper;
+	
+	@Autowired
+	private ResumeService resumeService;
 
 	@GetMapping("/")
 	public String index(Model model, HttpServletRequest request) throws IOException, GeoIp2Exception {
@@ -96,7 +102,9 @@ public class PageController {
 	}
 
 	@GetMapping("/resume")
-	public String resume() {
+	public String resume(Model model) {
+		Resume resume = resumeService.findByEmail(USER_EMAIL);
+		model.addAttribute("resume", resume);
 		return RESUME_PAGE;
 	}
 

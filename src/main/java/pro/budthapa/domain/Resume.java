@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Resume {
 	@Id
@@ -19,10 +21,14 @@ public class Resume {
 	private Long id;
 	private String name;
 	private int age;
+	
 	@Column(name="current_location")
 	private String location;
 	private String image;
+	
+	@Length(max=20000)
 	private String about;
+	
 	private String languageTools;
 	private LocalDate createdDate = LocalDate.now();
 	private LocalDate updatedDate;

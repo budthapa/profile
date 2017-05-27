@@ -1,9 +1,6 @@
 package pro.budthapa.controller;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pro.budthapa.domain.Career;
-import pro.budthapa.domain.Education;
 import pro.budthapa.domain.Resume;
 import pro.budthapa.service.ResumeService;
 
@@ -25,7 +20,8 @@ import pro.budthapa.service.ResumeService;
 public class ResumeController {
 	Logger log = LoggerFactory.getLogger(ResumeController.class);
 	
-	private static final String ADD_RESUME="resume/addResume";
+	private static final String ADD_RESUME="resume/addResume2";
+	private static final String EDIT_RESUME="resume/editResume";
 	
 	@Autowired
 	private ResumeService resumeService;
@@ -41,8 +37,10 @@ public class ResumeController {
 			Principal principal){
 		
 		resume.setEmail(principal.getName());
-		System.out.println("career size "+resume.getCareer().size());
 		
+		/*
+		 * Disable this functionality temporarily
+		 * 
 		List<Career> careerList = new ArrayList<>();
 		Career career;
 		for(int i=0;i<resume.getCareer().size();i++){
@@ -78,10 +76,32 @@ public class ResumeController {
 
 		resume.setCareer(careerList);
 		resume.setEducation(educationList);
-		
+		*/
 		resumeService.save(resume);
 		
 		model.addAttribute("resume",resume);
+		model.addAttribute("resumeSaved",true);
 		return ADD_RESUME;
 	}
+	
+	@GetMapping("/resume/edit")
+	public String addResume(Resume resume, Model model, Principal principal){
+		resume = resumeService.findByEmail(principal.getName()); 
+		resume.setEmail(principal.getName());
+		
+		model.addAttribute("resume",resume);
+		return EDIT_RESUME;
+	}
+	
+	@PostMapping("/resume/edit")
+	public String editResume(@Valid Resume resume, BindingResult result, Model model,Principal principal){
+		resume.setEmail(principal.getName());
+		resumeService.update(resume);
+		
+		model.addAttribute("resume",resume);
+		model.addAttribute("resumeUpdated",true);
+		
+		return EDIT_RESUME;
+	}
+	
 }

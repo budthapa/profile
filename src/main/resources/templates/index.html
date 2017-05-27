@@ -6,15 +6,15 @@
 <title>Home</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<div class="container">
+	<div layout:fragment="content">
+		<div class="container" style="width:100%">
 			<div class="greetings text-center">
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="item active">
-							
+							<!-- 
 							<h3>Oh, Hello There Beautiful Human Being!</h3>
-							
+							 -->
 							<div th:if="${goodMorning}">
 								<img th:src="@{/image/morning.jpg}" class="center-block img-responsive hidden-sm hidden-xs" alt="Greetings from Buddhi Bal Thapa" />
 								<img th:src="@{/image/morning640x360.jpg}" class="center-block img-responsive hidden-md hidden-lg" alt="Greetings from Buddhi Bal Thapa" />
@@ -55,6 +55,6 @@
 					</div>
 				</div>
 		</div>
-	</section>
+	</div>
 </body>
 </html>

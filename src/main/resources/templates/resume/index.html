@@ -4,12 +4,21 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorator="layout">
 <head>
-<title>Dashboard</title>
+<title>Resume</title>
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container">this is the resume page</div>
+		<div class="container">
+			<div sec:authorize="hasAuthority('ADMIN')">
+				<a th:href="@{/resume/edit}">Edit Resume</a>
+			</div>
+			<div th:if="${resume}">
+				<div th:utext="${resume.about}">
+				</div>
+			</div>
+		
+		</div>
 	</div>
 </body>
 </html>
