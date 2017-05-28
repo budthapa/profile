@@ -47,7 +47,7 @@ public class PageController {
 
 	private static final String INDEX_PAGE = "index";
 	private static final String RESUME_PAGE = "resume/index";
-	private static final String PROJECT_PAGE = "projects";
+	private static final String PROJECT_PAGE = "project";
 	private static final String BLOG_PAGE = "blog/index";
 	private static final String CONTACT_PAGE = "contact";
 	private static final String LOGIN_PAGE = "login";

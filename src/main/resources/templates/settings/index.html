@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
+<head>
+<title>Settings</title>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#profile"
+					aria-controls="home" role="tab" data-toggle="tab">My Profile</a></li>
+				<li role="presentation"><a href="#email"
+					aria-controls="profile" role="tab" data-toggle="tab">Change Email</a></li>
+				<li role="presentation"><a href="#password"
+					aria-controls="messages" role="tab" data-toggle="tab">Change Password</a></li>
+				<li role="presentation"><a href="#settings"
+					aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="profile">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-body">
+							<p>view my profile here</p>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="email">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-body">
+							<p>change email here</p>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="password">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-body">
+							<p>change password here</p>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="settings">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-body">
+							<p>deactivate account here</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

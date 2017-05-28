@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
+<head>
+  <title>Projects</title>
+</head>
+<body>
+  <div layout:fragment="content">
+		<div class="container">
+			<div sec:authorize="hasAuthority('ADMIN')">
+				<a th:href="@{/project/edit}">Edit Project</a>
+			</div>
+			<div th:if="${project}">
+				<div th:utext="${project.description}">
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</body>
+</html>
