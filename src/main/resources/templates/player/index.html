@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8" />
+<title>Media Player</title>
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.13/plyr.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 100%">
+			<div class="col-sm-6">
+				<h3>Audio Player</h3>
+			</div>
+		</div>
+	</div>
+	<div layout:fragment="player">
+		<!-- video player -->
+		<!-- 
+		<div class="col-lg-6">
+			<div data-type="youtube" data-video-id="bTqVqk7FSmY"></div>
+		</div>
+		 -->
+		 <!-- audio player -->
+		<div class="col-lg-6">
+			<h3>Enter video name</h3>
+			
+			<form class="form-inline" id="player-form" th:method="post" th:action="@{/player/link}">
+				<div class="form-group">
+					<label for="video-link">Video URL</label>
+					<input type="text" class="form-control" id="videolink" name="videolink" placeholder="Enter video link here" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="fetch-video-link btn btn-default">Search Video</button>
+				</div>
+			</form>
+			<br />
+			<div class="audioDiv">
+				<audio controls="controls" id="audioplayer">
+					<source src="" type="audio/mp3" class="audioSource"/>
+					<source src="" type="audio/ogg" class="audioSource"/>
+				</audio>
+			</div>
+			<div class="success-div"></div>
+		</div>
+		<!-- include script for player -->
+		<div th:replace="player/player :: player-container"></div>
+	</div>
+</body>
+
+</html>

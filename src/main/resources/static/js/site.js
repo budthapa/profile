@@ -81,3 +81,105 @@ $(document).ready(function() {
 $(document).ready(function(){
 	$(".access-denied").effect("shake");
 });
+
+$(document).ready(function(e){
+/*	
+	$("#player-form").submit(function(e){
+		var selectedData = document.querySelector('#videolink').value;
+	    e.preventDefault();
+	    alert(selectedData);
+	    var data = {}
+	    var Form = this;
+	    
+	    //Gathering the Data
+	    //and removing undefined keys(buttons)
+	    $.each(this.elements, function(i, v){
+	            var input = $(v);
+	        data[input.attr("name")] = input.val();
+	        delete data["undefined"];
+	    });
+		
+	    //Save Form Data........
+	    $.ajax({
+	        cache: false,
+	        url : "/player/link?videolink="+selectedData,
+	        type: "POST",
+	        dataType : "json",
+	        data : JSON.stringify(data),
+	        context : Form,
+	        success : function(callback){
+	            //Where $(this) => context == FORM
+	            console.log(JSON.parse(callback));
+	            $(this).html("Success!");
+	        },
+	        error : function(){
+	            $(this).html("Error!");
+	        }
+	    });
+	});*/
+	
+	var form = $('#player-form');
+  
+    form.submit(function (e) {
+
+        e.preventDefault();
+    	selectedData = document.querySelector('#videolink').value;
+    	var player = document.querySelector('#audioplayer');
+    	alert(selectedData);
+    	
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            dataType : 'json',
+    		timeout : 100000,
+    		success : function(data) {
+    			console.log("SUCCESS: ", data.link);
+    			$(".audioSource").attr('src',data.link);
+    			player.play()
+    			//plyr.setup();
+    			plyr.setup(player);
+//    			player.destroy();
+    		},
+    		error : function(e) {
+    			console.log("ERROR: ", e);
+    		},
+    		done : function(e) {
+    			console.log("DONE");
+    		}
+        });
+    });
+       
+	/*
+	$(".fetch-video-link").on('click', function(event){
+		event.preventDefault();
+		
+		var link = $("#video-link").val();
+		$(".audioDiv audio source").attr('src',link);
+		$(".audioDiv audio")[0].load();
+	
+	
+		var post_url = $(this).attr('action');
+		var post_method = $(this).attr('method');
+		var form_data = $(this).serialize();
+	
+		alert(post_url+" "+post_method+" "+form_data);
+		
+		
+		$.ajax({
+			url: post_url,
+			type: post_method,
+			data: form_data,
+			success: function(data){
+				console.log("Form submit success");
+				$(".success-div").html(data);
+			}
+		});
+	});
+	*/
+});
+
+
+
+
+
