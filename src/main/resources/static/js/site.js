@@ -83,6 +83,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(e){
+	$("#loading").hide();
 /*	
 	$("#player-form").submit(function(e){
 		var selectedData = document.querySelector('#videolink').value;
@@ -124,7 +125,7 @@ $(document).ready(function(e){
 
         e.preventDefault();
     	selectedData = document.querySelector('#videolink').value;
-    	var player = document.querySelector('#audioplayer');
+//    	var player = document.querySelector('#audioplayer');
     	alert(selectedData);
     	
         $.ajax({
@@ -133,12 +134,18 @@ $(document).ready(function(e){
             data: form.serialize(),
             dataType : 'json',
     		timeout : 100000,
+    		beforeSend:function(){
+    			$("#loading").show();
+    		},
+    		complete:function(){
+    			$("#loading").hide();
+    		},
     		success : function(data) {
     			console.log("SUCCESS: ", data.link);
     			$(".audioSource").attr('src',data.link);
-    			player.play()
-    			//plyr.setup();
-    			plyr.setup(player);
+//    			player.play()
+    			plyr.setup();
+//    			plyr.setup(player);
 //    			player.destroy();
     		},
     		error : function(e) {
