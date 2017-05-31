@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +33,7 @@ import pro.budthapa.domain.Resume;
 import pro.budthapa.domain.User;
 import pro.budthapa.helper.GeoLocation;
 import pro.budthapa.helper.GeoLocationHelper;
+import pro.budthapa.helper.PasswordHelper;
 import pro.budthapa.service.EmailHelperService;
 import pro.budthapa.service.ResumeService;
 import pro.budthapa.service.UserService;
@@ -56,9 +56,6 @@ public class PageController {
 	
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	private EmailHelperService emailHelper;
@@ -162,7 +159,8 @@ public class PageController {
 																						// email
 					log.info("Password is " + randomPassword);
 					user.setName("your name");
-					String hashedPassword = bCryptPasswordEncoder.encode(randomPassword);
+//					String hashedPassword = bCryptPasswordEncoder.encode(randomPassword);
+					String hashedPassword = new PasswordHelper().hashPassword(randomPassword);
 					user.setPassword(hashedPassword);
 					user.setPlainPassword(randomPassword);
 					user.setActive(false);

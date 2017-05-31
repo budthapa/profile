@@ -121,12 +121,13 @@ $(document).ready(function(e){
 	
 	var form = $('#player-form');
   
+	
+	var len=1;
+	
+	var u;
     form.submit(function (e) {
-
-        e.preventDefault();
-    	selectedData = document.querySelector('#videolink').value;
-//    	var player = document.querySelector('#audioplayer');
-    	alert(selectedData);
+    	var cloneDiv = $("#audioplayer").detach();
+    	e.preventDefault();
     	
         $.ajax({
             type: form.attr('method'),
@@ -141,18 +142,26 @@ $(document).ready(function(e){
     			$("#loading").hide();
     		},
     		success : function(data) {
-    			console.log("SUCCESS: ", data.link);
-    			$(".audioSource").attr('src',data.link);
-//    			player.play()
+    			var dat = data.link;
+    			console.log("SUCCESS: ", dat);
+    			console.log("audioplayer length "+$("#audioplayer").length);
+    			
+    			if($("#audioplayer").length < len){
+    				$(cloneDiv).appendTo('.audioDiv');    				
+    				console.log("append div");
+    				data.link.splice(1,1);
+    			}
+    			len=0;
+    			$(".audioSource").attr('src',dat);
+    			
+    			
+    			console.log(cloneDiv);
+    			
     			plyr.setup();
-//    			plyr.setup(player);
-//    			player.destroy();
+
     		},
     		error : function(e) {
     			console.log("ERROR: ", e);
-    		},
-    		done : function(e) {
-    			console.log("DONE");
     		}
         });
     });

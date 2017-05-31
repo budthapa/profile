@@ -30,7 +30,7 @@ public class PlayerController {
 	@ResponseBody
 	@PostMapping(value = { "/player/link" }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Object extractUrl(@RequestBody String videoLink) {
-		log.info("Got video link. Now getting the url");
+		log.info("Got video link from user. Now getting the playable link for "+videoLink);
 		String unescapeUrl=new String();
 		try {
 			unescapeUrl = URLDecoder.decode(videoLink, "UTF-8");

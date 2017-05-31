@@ -35,9 +35,6 @@ public class DashboardController {
 	@Autowired
 	RedisTemplate<String, Object> template;
 
-	@Autowired
-	private PasswordHelper passwordHelper;
-
 	@GetMapping("/dashboard")
 	public String index(Model model, Principal principal) {
 		if (principal != null) {
@@ -92,7 +89,7 @@ public class DashboardController {
 		User userDb = userService.findUserByEmail(principal.getName());
 		model.addAttribute("user", user);
 		if (!result.hasErrors()) {
-
+			PasswordHelper passwordHelper=new PasswordHelper();
 			boolean passwordMatches = passwordHelper.decryptPassword(user.getPassword(), userDb.getPassword());
 			if (passwordMatches) {
 				String newPassword = user.getPlainPassword();
