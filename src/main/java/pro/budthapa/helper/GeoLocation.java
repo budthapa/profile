@@ -19,16 +19,17 @@ import com.maxmind.geoip2.model.CityResponse;
 public class GeoLocation {
 	Logger log = LoggerFactory.getLogger(GeoLocation.class);
 
-	private String dbLocation = "/home/budthapa/";
+	private String geoliteDbLocation = "static/geolite/";
 	private String fileName = "GeoLite2-City.mmdb";
 	private final String SERVER_ADDRESS = "173.255.252.131";
+
 
 	private DatabaseReader dbr;
 
 	public void geoLocationReader() throws IOException {
-		File file = new File(dbLocation + fileName);
+		ClassLoader loader = getClass().getClassLoader();
+		File file = new File(loader.getResource(geoliteDbLocation+fileName).getFile());
 		dbr = new DatabaseReader.Builder(file).build();
-
 	}
 
 	public GeoLocationHelper getLocation(String ip) throws IOException {

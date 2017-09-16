@@ -70,7 +70,7 @@ public class PageController {
 //		 String ip = "31.215.16.96"; //my public id
 //		 String ip = "173.255.252.131"; //my server ip
 //		 String ip = "206.190.36.45";
-//		String ip = "216.58.207.14"; // google.com
+//		 String ip = "216.58.207.14"; // google.com
 //		 String ip = "96.30.12.176"; //hamrobazar.com
 
 		GeoLocation gl = new GeoLocation();
