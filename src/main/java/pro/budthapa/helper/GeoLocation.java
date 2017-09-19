@@ -9,6 +9,7 @@ import java.time.ZoneId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 
 import com.github.bfsmith.geotimezone.TimeZoneLookup;
 import com.github.bfsmith.geotimezone.TimeZoneResult;
@@ -19,16 +20,14 @@ import com.maxmind.geoip2.model.CityResponse;
 public class GeoLocation {
 	Logger log = LoggerFactory.getLogger(GeoLocation.class);
 
-	private String geoliteDbLocation = "static/geolite/";
 	private String fileName = "GeoLite2-City.mmdb";
-	private final String SERVER_ADDRESS = "173.255.252.131";
-
+	private final String SERVER_ADDRESS = "47.74.158.133";
 
 	private DatabaseReader dbr;
 
 	public void geoLocationReader() throws IOException {
 		ClassLoader loader = getClass().getClassLoader();
-		File file = new File(loader.getResource(geoliteDbLocation+fileName).getFile());
+		File file = new File(loader.getResource(fileName).getFile());
 		dbr = new DatabaseReader.Builder(file).build();
 	}
 
