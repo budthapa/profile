@@ -9,6 +9,9 @@ import java.time.ZoneId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 import com.github.bfsmith.geotimezone.TimeZoneLookup;
 import com.github.bfsmith.geotimezone.TimeZoneResult;
@@ -16,17 +19,32 @@ import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 
+@Configuration
+//@Profile("prod")
 public class GeoLocation {
 	Logger log = LoggerFactory.getLogger(GeoLocation.class);
-	private String fileLocation = "/home/budthapa/";
-	private String fileName = "GeoLite2-City.mmdb";
-	private final String SERVER_ADDRESS = "47.74.158.133";
+	
+	private static String fileLocation;
+	private static String fileName;
+	private static String serverAddress;
+	
+	@Autowired
+	public GeoLocation(@Value("${geolite-location}") String fileLoc, @Value("${geolite-filename}")
+	String fileNam, @Value("${server-address}") String serverAdd) {
+		fileLocation=fileLoc;
+		fileName=fileNam;
+		serverAddress=serverAdd;
+	}
+	
+	public GeoLocation() {}
 
 	private DatabaseReader dbr;
-
+	
 	public void geoLocationReader() throws IOException {
 		
-		File file = new File(fileLocation+fileName);
+		System.out.println(GeoLocation.fileLocation+" "+GeoLocation.fileName+" "+GeoLocation.serverAddress);
+		
+		File file = new File(GeoLocation.fileLocation+GeoLocation.fileName);
 		dbr = new DatabaseReader.Builder(file).build();
 	}
 
@@ -44,7 +62,7 @@ public class GeoLocation {
 			geoLocationHelper = setGeoDetail(response);
 		} catch (GeoIp2Exception e) {
 			log.info("IP Address not found, falling back to server IP Address");
-			ipAddress = InetAddress.getByName(SERVER_ADDRESS);
+			ipAddress = InetAddress.getByName(serverAddress);
 			CityResponse response;
 			try {
 				response = dbr.city(ipAddress);
