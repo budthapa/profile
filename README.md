@@ -6,3 +6,5 @@ Spring Boot
 MySQL
 Thymeleaf
 Bootstrap 3
+
+Execute "sudo java -jar -Dspring.profiles.active="prod" buddhibalthapa-0.0.1-SNAPSHOT.jar" to execute in production environment
