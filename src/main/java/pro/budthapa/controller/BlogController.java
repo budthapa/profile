@@ -1,6 +1,7 @@
 package pro.budthapa.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -53,20 +54,21 @@ public class BlogController {
 	@GetMapping("/blog/all")
 	public String findAllBlog(Model model) {
 		model.addAttribute("blogs", blogService.findAllBlogs());
+		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		return INDEX_PAGE;
 	}
 
 	@GetMapping("/blog/show/{id}/{blogTitle}")
 	public String findAllBlog(@PathVariable Long id, Model model, HttpServletRequest request) {
 		Blog blog = blogService.findBlogById(id);
-		System.out.println("session :"+request.getSession().getId());
-		System.out.println("ip add "+request.getRemoteAddr());
 		if (blog != null) {
 			model.addAttribute("blog", blog);
+			model.addAttribute("recentBlogs", blogService.findRecentBlog());
 			return SHOW_BLOG_PAGE;
 		}
 		model.addAttribute("blogNotFound", true);
 		model.addAttribute("blogs", blogService.findAllBlogs());
+		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		return INDEX_PAGE;
 	}
 

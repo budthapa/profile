@@ -68,6 +68,23 @@
 					</div>
 				</div>
 			</div>
+			<!-- recent blogs ends -->
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.recent}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${recentBlogs}">
+							<p>
+								<a th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- recent blogs ends -->
 		</div>
 	</div>
 	<!-- 

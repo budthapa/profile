@@ -39,4 +39,9 @@ public class BlogServiceImpl implements BlogService{
 		blogRepository.delete(id);
 	}
 
+	@Override
+	public List<Blog> findRecentBlog() {
+		return blogRepository.findFirst2ByOrderByCreateDateDesc();
+	}
+
 }

@@ -1,111 +1,131 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorator="layout" >
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-	<title>View Blog</title>
+<title>View Blog</title>
 </head>
-	<body>
-		<div layout:fragment="content">
-			<div class="container">
-				<div class="col-sm-9">
-					<span><a th:href="@{/blog/all}"><i
-							class="fa fa-long-arrow-left" aria-hidden="true"></i> Go Back</a></span>
-					<div class="">
-						<div class="blog-panel">
-							<div class="row">
-								<p th:text="${blog.title}" class="title-heading"></p>
-								<div class="published-on">
-									<span>Published on:<span th:utext="${blog.createDate}"></span></span>
-								</div>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="col-sm-9">
+				<span><a th:href="@{/blog/all}"><i
+						class="fa fa-long-arrow-left" aria-hidden="true"></i> Go Back</a></span>
+				<div class="">
+					<div class="blog-panel">
+						<div class="row">
+							<p th:text="${blog.title}" class="title-heading"></p>
+							<div class="published-on">
+								<span>Published on:<span th:utext="${blog.createDate}"></span></span>
 							</div>
-							<!-- share button starts -->
-							<div class="row share-this">
-								<div class="col-xs-9">
-									<div layout:fragment="share-this">
-										<!-- AddToAny BEGIN -->
-										<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-											<a class="a2a_dd" th:href="@{https://www.addtoany.com/share}"></a>
-											<a class="a2a_button_facebook a2a_counter"></a>
-											<a class="a2a_button_twitter a2a_counter"></a>
-											<a class="a2a_button_linkedin a2a_counter"></a>
-											<a class="a2a_button_google_plus a2a_counter"></a>
-											<a class="a2a_button_pinterest a2a_counter"></a>
-											<a class="a2a_button_email a2a_counter"></a>
-											<a class="a2a_button_stumbleupon a2a_counter"></a>
-											<a class="a2a_button_reddit a2a_counter"></a>
-										</div>
-										<script async="async" th:src="@{https://static.addtoany.com/menu/page.js}"></script>
-										<!-- AddToAny END -->
-									</div>
-								</div>
-								
-								<div class="col-xs-3">
-									<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Views&nbsp;
-									<i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print
-								</div>
-							</div>
-							<!-- share button ends -->
-							
-							<hr />
-							
-							<!-- main body content starts -->
-							<div class="row">
-								<p th:utext="${blog.description}"></p>
-							</div>
-							<!-- main body content ends -->
-							
-							<!-- share button starts -->
-							<div class="row share-this">
-								<div class="col-xs-9">
-									<div layout:fragment="share-this">
-										<!-- AddToAny BEGIN -->
-										<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-											<a class="a2a_dd" th:href="@{https://www.addtoany.com/share}"></a>
-											<a class="a2a_button_facebook a2a_counter"></a>
-											<a class="a2a_button_twitter a2a_counter"></a>
-											<a class="a2a_button_linkedin a2a_counter"></a>
-											<a class="a2a_button_google_plus a2a_counter"></a>
-											<a class="a2a_button_pinterest a2a_counter"></a>
-											<a class="a2a_button_email a2a_counter"></a>
-											<a class="a2a_button_stumbleupon a2a_counter"></a>
-											<a class="a2a_button_reddit a2a_counter"></a>
-										</div>
-										<!-- AddToAny END -->
-									</div>
-								</div>
-								<div class="col-xs-3">
-									<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Views&nbsp;
-									<i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print
-								</div>
-							</div>
-							<!-- share button ends -->
-							<hr />
 						</div>
+						<!-- share button starts -->
+						<div class="row share-this">
+							<div class="col-xs-9">
+								<div layout:fragment="share-this">
+									<!-- AddToAny BEGIN -->
+									<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+										<a class="a2a_dd" th:href="@{https://www.addtoany.com/share}"></a>
+										<a class="a2a_button_facebook a2a_counter"></a> <a
+											class="a2a_button_twitter a2a_counter"></a> <a
+											class="a2a_button_linkedin a2a_counter"></a> <a
+											class="a2a_button_google_plus a2a_counter"></a> <a
+											class="a2a_button_pinterest a2a_counter"></a> <a
+											class="a2a_button_email a2a_counter"></a> <a
+											class="a2a_button_stumbleupon a2a_counter"></a> <a
+											class="a2a_button_reddit a2a_counter"></a>
+									</div>
+									<script async="async"
+										th:src="@{https://static.addtoany.com/menu/page.js}"></script>
+									<!-- AddToAny END -->
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Views&nbsp; <i
+									class="fa fa-print" aria-hidden="true"></i>&nbsp;Print
+							</div>
+						</div>
+						<!-- share button ends -->
+
+						<hr />
+
+						<!-- main body content starts -->
+						<div class="row">
+							<p th:utext="${blog.description}"></p>
+						</div>
+						<!-- main body content ends -->
+
+						<!-- share button starts -->
+						<div class="row share-this">
+							<div class="col-xs-9">
+								<div layout:fragment="share-this">
+									<!-- AddToAny BEGIN -->
+									<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+										<a class="a2a_dd" th:href="@{https://www.addtoany.com/share}"></a>
+										<a class="a2a_button_facebook a2a_counter"></a> <a
+											class="a2a_button_twitter a2a_counter"></a> <a
+											class="a2a_button_linkedin a2a_counter"></a> <a
+											class="a2a_button_google_plus a2a_counter"></a> <a
+											class="a2a_button_pinterest a2a_counter"></a> <a
+											class="a2a_button_email a2a_counter"></a> <a
+											class="a2a_button_stumbleupon a2a_counter"></a> <a
+											class="a2a_button_reddit a2a_counter"></a>
+									</div>
+									<!-- AddToAny END -->
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Views&nbsp; <i
+									class="fa fa-print" aria-hidden="true"></i>&nbsp;Print
+							</div>
+						</div>
+						<!-- share button ends -->
+						<hr />
 					</div>
 				</div>
-				<!-- most popular blogs starts -->
-				<div class="col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading most-popular-blog">
-							<p th:text="#{blog.most.popular}"></p>
-						</div>
-						<div class="panel-body">
-							<div th:each="blog : ${blogs}">
-								<p>
-									<a th:href="@{/blog/show/{id}(id=${blog.id})}" th:text="${blog.title}"></a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- most popular blogs ends -->
-				<!-- comment box starts -->
-				<div id="disqus-comment" layout:fragment="comment">
-					<div id="disqus_thread"></div>
-					<div th:replace="blog/disqusComment :: disqus-counter"></div>
-					<div th:replace="blog/disqusComment :: disqus-loader"></div>
-				</div>
-			<!-- comment box ends -->
 			</div>
+			<!-- most popular blogs starts -->
+			<div class="col-sm-3">
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.most.popular}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${blogs}">
+							<p>
+								<a th:href="@{/blog/show/{id}(id=${blog.id})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- most popular blogs ends -->
+			<!-- recent blogs ends -->
+			<div class="col-sm-3">
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.recent}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${recentBlogs}">
+							<p>
+								<a th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- recent blogs ends -->
+			<!-- comment box starts -->
+			<div id="disqus-comment" layout:fragment="comment">
+				<div id="disqus_thread"></div>
+				<div th:replace="blog/disqusComment :: disqus-counter"></div>
+				<div th:replace="blog/disqusComment :: disqus-loader"></div>
+			</div>
+			<!-- comment box ends -->
 		</div>
-	</body>
+	</div>
+</body>
 </html>
