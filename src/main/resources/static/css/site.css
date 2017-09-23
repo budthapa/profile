@@ -1,4 +1,6 @@
 i
+
+ 
  @CHARSET "UTF-8";
 
 /* Custom CSS for the application */
@@ -58,10 +60,10 @@ a {
 
 /* navbar ends */
 #main-content-box {
-	/* background-color: #cecece; */
+	background-color: #e7e7e7;
 	color: black;
-	padding: 5px;
-	margin-top: -20px;
+	padding: 2px;
+	margin-top: -24px;
 }
 
 /* login box starts */
@@ -215,12 +217,10 @@ a {
 	background-color: rgba(30, 83, 31, 0.5);
 }
 
-@media screen and (max-device-width : 360px){
-  .greeting-text{
-    font-size:1.5em !important;
-  }
+@media screen and (max-device-width : 360px) {
+	.greeting-text {
+		font-size: 1.5em !important;
+	}
 }
-
-
 
 /* langing page stops */

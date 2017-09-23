@@ -8,13 +8,18 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container" style="width:100%">
+			<div class="row">
+					<div class="col-sm-6">
+						<p>Your current time is <strong><span th:text="${currentUserTime}"></span></strong></p>
+					</div>
+					<div class="col-sm-6">
+						<p class="pull-right">You are greeted with respect to your current time.</p>
+					</div>
+				</div>
 			<div class="greetings text-center">
 				<div id="mycarousel" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="item active">
-							<!-- 
-							<h3>Oh, Hello There Beautiful Human Being!</h3>
-							 -->
 							<div th:if="${goodMorning}">
 								<img th:src="@{/image/morning.jpg}" class="center-block img-responsive hidden-sm hidden-xs" alt="Greetings from Buddhi Bal Thapa" />
 								<img th:src="@{/image/morning640x360.jpg}" class="center-block img-responsive hidden-md hidden-lg" alt="Greetings from Buddhi Bal Thapa" />
@@ -37,23 +42,14 @@
 								<div class="carousel-caption greeting-text">Hope you had a great day today. Good night, time to sleep</div>
 							</div>
 							<div th:if="${midNight}">
+								<div class="carousel-caption greeting-text">Wow! You still awake?</div>
 								<img th:src="@{/image/midnight.jpg}" class="center-block img-responsive hidden-sm hidden-xs" alt="Greetings from Buddhi Bal Thapa" />
 								<img th:src="@{/image/midnight640x360.jpg}" class="center-block img-responsive hidden-md hidden-lg" alt="Greetings from Buddhi Bal Thapa" />
-								<div class="carousel-caption greeting-text">Wow! You still awake?</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>Your current time is <strong><span th:text="${currentUserTime}"></span></strong></p>
-					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">You are greeted with respect to your current time.</p>
-					</div>
-				</div>
 		</div>
 	</div>
 </body>
