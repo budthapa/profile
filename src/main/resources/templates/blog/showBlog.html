@@ -84,7 +84,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- most popular blogs starts -->
 			<div class="col-sm-3">
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
@@ -99,10 +98,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- most popular blogs ends -->
-			<!-- recent blogs ends -->
-			<div class="col-sm-3">
+				<!-- recent blogs ends -->
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{blog.recent}"></p>
@@ -110,14 +106,31 @@
 					<div class="panel-body">
 						<div th:each="blog : ${recentBlogs}">
 							<p>
-								<a th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+								<a
+									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
 									th:text="${blog.title}"></a>
 							</p>
 						</div>
 					</div>
 				</div>
+				<!-- recent blogs ends -->
+				<!-- category ends -->
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{category.show}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="category : ${categories}">
+							<p>
+								<a
+									th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
+									th:text="${category.name}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!-- recent blogs ends -->
+			<!-- categories ends -->
 			<!-- comment box starts -->
 			<div id="disqus-comment" layout:fragment="comment">
 				<div id="disqus_thread"></div>

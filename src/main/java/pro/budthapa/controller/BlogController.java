@@ -59,14 +59,14 @@ public class BlogController {
 	@GetMapping("/blog/show/{id}/{blogTitle}")
 	public String findAllBlog(@PathVariable Long id, Model model, HttpServletRequest request) {
 		Blog blog = blogService.findBlogById(id);
+		recentBlogs(model);
+		allCategories(model);
 		if (blog != null) {
 			model.addAttribute("blog", blog);
-			recentBlogs(model);
 			return SHOW_BLOG_PAGE;
 		}
 		model.addAttribute("blogNotFound", true);
 		allBlogs(model);
-		recentBlogs(model);
 		return INDEX_PAGE;
 	}
 
