@@ -10,7 +10,12 @@
 			<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<p th:text="#{blog.all}"></p>
+						<div th:if="${blogCategory}">
+							<p>Category: <span th:text="${blogCategoryName}"></span></p>
+						</div>
+						<div th:if="${blogAll}">
+							<p th:text="#{blog.all}"></p>						
+						</div>
 						<p sec:authorize="hasAuthority('ADMIN')"><a th:text="#{blog.new}" th:href="@{/blog/new}"></a></p>
 					</div>
 					<div class="panel-body">
@@ -85,6 +90,23 @@
 				</div>
 			</div>
 			<!-- recent blogs ends -->
+			<!-- category ends -->
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.recent}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="category : ${categories}">
+							<p>
+								<a th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
+									th:text="${category.name}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- categories ends -->
 		</div>
 	</div>
 	<!-- 

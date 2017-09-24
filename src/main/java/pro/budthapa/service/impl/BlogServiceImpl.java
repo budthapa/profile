@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pro.budthapa.domain.Blog;
+import pro.budthapa.domain.Category;
 import pro.budthapa.repository.BlogRepository;
 import pro.budthapa.service.BlogService;
 
@@ -42,6 +43,11 @@ public class BlogServiceImpl implements BlogService{
 	@Override
 	public List<Blog> findRecentBlog() {
 		return blogRepository.findFirst2ByOrderByCreateDateDesc();
+	}
+
+	@Override
+	public List<Blog> findAllBlogsByCategory(Category category) {
+		return blogRepository.findBlogByCategory(category);
 	}
 
 }

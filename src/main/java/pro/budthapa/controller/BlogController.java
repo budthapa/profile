@@ -1,6 +1,9 @@
 package pro.budthapa.controller;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Blog;
+import pro.budthapa.domain.Category;
 import pro.budthapa.service.BlogService;
 import pro.budthapa.service.CategoryService;
 
@@ -32,14 +36,16 @@ public class BlogController {
 
 	@GetMapping("/blog/new")
 	public String index(Model model) {
-		model.addAttribute("categories", categoryService.findAllCategory());
+		findAllCategory(model);
+//		model.addAttribute("categories", findAllCategory());
 		model.addAttribute("blog", new Blog());
 		return ADD_NEW_BLOG;
 	}
 
 	@PostMapping("/blog/new")
 	public String index(@Valid Blog blog, BindingResult result, Model model) {
-		model.addAttribute("categories", categoryService.findAllCategory());
+//		model.addAttribute("categories", findAllCategory());
+		findAllCategory(model);
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
 			blogService.saveBlog(blog);
@@ -52,9 +58,7 @@ public class BlogController {
 
 	@GetMapping("/blog/all")
 	public String findAllBlog(Model model) {
-		model.addAttribute("blogs", blogService.findAllBlogs());
-		model.addAttribute("recentBlogs", blogService.findRecentBlog());
-		return INDEX_PAGE;
+		return findBlogs(model, new Category());
 	}
 
 	@GetMapping("/blog/show/{id}/{blogTitle}")
@@ -66,7 +70,7 @@ public class BlogController {
 			return SHOW_BLOG_PAGE;
 		}
 		model.addAttribute("blogNotFound", true);
-		model.addAttribute("blogs", blogService.findAllBlogs());
+		model.addAttribute("blogs", findAllBlogs());
 		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		return INDEX_PAGE;
 	}
@@ -74,7 +78,9 @@ public class BlogController {
 	@GetMapping("/blog/edit/{id}")
 	public String editBlog(@PathVariable Long id, Model model, Blog blog) {
 		blog = blogService.findBlogById(id);
-		model.addAttribute("categories", categoryService.findAllCategory());
+		findAllCategory(model);
+		
+//		model.addAttribute("categories", categoryService.findAllCategory());
 		if (blog != null) {
 			model.addAttribute("blog", blog);
 			return EDIT_BLOG_PAGE;
@@ -85,7 +91,9 @@ public class BlogController {
 
 	@PostMapping("/blog/edit/{id}")
 	public String updateBlog(@PathVariable Long id, @Valid Blog blog, BindingResult result, Model model) {
-		model.addAttribute("categories", categoryService.findAllCategory());
+		findAllCategory(model);
+		
+//		model.addAttribute("categories", categoryService.findAllCategory());
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
 			blog.setId(id);
@@ -100,11 +108,42 @@ public class BlogController {
 
 	@PostMapping("/blog/delete/{id}")
 	public String deleteBlog(@PathVariable Long id, Model model, Blog blog) {
-		System.out.println("blog id: "+id);
-//		blogService.deleteBlog(id);
+		System.out.println("blog id: " + id);
+		// blogService.deleteBlog(id);
 		model.addAttribute("blogDeleted", true);
-		model.addAttribute("blogs", blogService.findAllBlogs());
+		model.addAttribute("blogs", findAllBlogs());
 		return "redirect:/blog/all";
 	}
 
+	@GetMapping("/blog/category/{id}/{name}")
+	public String getBlogByCategory(@PathVariable(name = "id") Long categoryId, @PathVariable String name, Category category, Model model) {
+		List<Blog> blog = blogService.findAllBlogsByCategory(category);
+		category.setBlog(blog);
+		category.setName(name);
+		return findBlogs(model, category);
+
+	}
+
+	private String findBlogs(Model model, Category category) {
+		if (category.getId() != null) {
+			model.addAttribute("blogCategory",true);
+			model.addAttribute("blogCategoryName",category.getName());
+			model.addAttribute("blogs", category.getBlog());
+		} else {
+			model.addAttribute("blogAll",true);
+			model.addAttribute("blogs", findAllBlogs());
+		}
+		model.addAttribute("recentBlogs", blogService.findRecentBlog());
+		findAllCategory(model);
+		//model.addAttribute("categories", findAllCategory());
+		return INDEX_PAGE;
+	}
+	
+	private List<Blog> findAllBlogs(){
+		return blogService.findAllBlogs();
+	}
+	
+	private void findAllCategory(Model model){
+		model.addAttribute("categories", categoryService.findAllCategory());
+	}
 }

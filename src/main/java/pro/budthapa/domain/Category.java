@@ -4,6 +4,7 @@
 package pro.budthapa.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Category implements Serializable{
 	private String name;
 
 	@OneToMany(mappedBy="category", cascade=CascadeType.ALL)
-	private Set<Blog> blog;
+	private List<Blog> blog;
 
 	public Category(){}
 
@@ -55,11 +56,11 @@ public class Category implements Serializable{
 		this.name = name;
 	}
 
-	public Set<Blog> getBlog() {
+	public List<Blog> getBlog() {
 		return blog;
 	}
 
-	public void setBlog(Set<Blog> blog) {
+	public void setBlog(List<Blog> blog) {
 		this.blog = blog;
 	}
 	
