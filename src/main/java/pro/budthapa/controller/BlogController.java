@@ -1,9 +1,7 @@
 package pro.budthapa.controller;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -36,28 +34,25 @@ public class BlogController {
 
 	@GetMapping("/blog/new")
 	public String index(Model model) {
-		findAllCategory(model);
-//		model.addAttribute("categories", findAllCategory());
+		allCategories(model);
 		model.addAttribute("blog", new Blog());
 		return ADD_NEW_BLOG;
 	}
 
 	@PostMapping("/blog/new")
 	public String index(@Valid Blog blog, BindingResult result, Model model) {
-//		model.addAttribute("categories", findAllCategory());
-		findAllCategory(model);
+		allCategories(model);
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
 			blogService.saveBlog(blog);
 			model.addAttribute("blogSaved", true);
 			return ADD_NEW_BLOG;
 		}
-
 		return ADD_NEW_BLOG;
 	}
 
 	@GetMapping("/blog/all")
-	public String findAllBlog(Model model) {
+	public String getAllBlog(Model model) {
 		return findBlogs(model, new Category());
 	}
 
@@ -66,21 +61,22 @@ public class BlogController {
 		Blog blog = blogService.findBlogById(id);
 		if (blog != null) {
 			model.addAttribute("blog", blog);
-			model.addAttribute("recentBlogs", blogService.findRecentBlog());
+			recentBlogs(model);
+//			model.addAttribute("recentBlogs", blogService.findRecentBlog());
 			return SHOW_BLOG_PAGE;
 		}
 		model.addAttribute("blogNotFound", true);
-		model.addAttribute("blogs", findAllBlogs());
-		model.addAttribute("recentBlogs", blogService.findRecentBlog());
+		allBlogs(model);
+		recentBlogs(model);
+//		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		return INDEX_PAGE;
 	}
 
 	@GetMapping("/blog/edit/{id}")
 	public String editBlog(@PathVariable Long id, Model model, Blog blog) {
 		blog = blogService.findBlogById(id);
-		findAllCategory(model);
+		allCategories(model);
 		
-//		model.addAttribute("categories", categoryService.findAllCategory());
 		if (blog != null) {
 			model.addAttribute("blog", blog);
 			return EDIT_BLOG_PAGE;
@@ -91,9 +87,8 @@ public class BlogController {
 
 	@PostMapping("/blog/edit/{id}")
 	public String updateBlog(@PathVariable Long id, @Valid Blog blog, BindingResult result, Model model) {
-		findAllCategory(model);
+		allCategories(model);
 		
-//		model.addAttribute("categories", categoryService.findAllCategory());
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
 			blog.setId(id);
@@ -111,7 +106,7 @@ public class BlogController {
 		System.out.println("blog id: " + id);
 		// blogService.deleteBlog(id);
 		model.addAttribute("blogDeleted", true);
-		model.addAttribute("blogs", findAllBlogs());
+		allBlogs(model);
 		return "redirect:/blog/all";
 	}
 
@@ -131,19 +126,23 @@ public class BlogController {
 			model.addAttribute("blogs", category.getBlog());
 		} else {
 			model.addAttribute("blogAll",true);
-			model.addAttribute("blogs", findAllBlogs());
+			allBlogs(model);
 		}
-		model.addAttribute("recentBlogs", blogService.findRecentBlog());
-		findAllCategory(model);
-		//model.addAttribute("categories", findAllCategory());
+//		model.addAttribute("recentBlogs", blogService.findRecentBlog());
+		recentBlogs(model);
+		allCategories(model);
 		return INDEX_PAGE;
 	}
 	
-	private List<Blog> findAllBlogs(){
-		return blogService.findAllBlogs();
+	private void recentBlogs(Model model) {
+		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 	}
 	
-	private void findAllCategory(Model model){
+	private void allBlogs(Model model){
+		model.addAttribute("blogs", blogService.findAllBlogs());
+	}
+	
+	private void allCategories(Model model){
 		model.addAttribute("categories", categoryService.findAllCategory());
 	}
 }
