@@ -1,14 +1,10 @@
-This is the personal portfolio of [Buddhi Bal Thapa](budthapa.pro)
+This is the personal portfolio of [Buddhi Bal Thapa](http://www.budthapa.pro)
 Version 1.0
 
 Developed Using 
-
 Spring Boot
-
 MySQL
-
 Thymeleaf
-
 Bootstrap 3
 
 Execute `sudo java -jar -Dspring.profiles.active="prod" <jarfile-name>.jar` to execute in production environment
