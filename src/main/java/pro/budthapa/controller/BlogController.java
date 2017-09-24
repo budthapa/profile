@@ -62,13 +62,11 @@ public class BlogController {
 		if (blog != null) {
 			model.addAttribute("blog", blog);
 			recentBlogs(model);
-//			model.addAttribute("recentBlogs", blogService.findRecentBlog());
 			return SHOW_BLOG_PAGE;
 		}
 		model.addAttribute("blogNotFound", true);
 		allBlogs(model);
 		recentBlogs(model);
-//		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		return INDEX_PAGE;
 	}
 
@@ -128,7 +126,6 @@ public class BlogController {
 			model.addAttribute("blogAll",true);
 			allBlogs(model);
 		}
-//		model.addAttribute("recentBlogs", blogService.findRecentBlog());
 		recentBlogs(model);
 		allCategories(model);
 		return INDEX_PAGE;
