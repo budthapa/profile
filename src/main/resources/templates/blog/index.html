@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
 <title>All Blogs</title>
@@ -11,12 +12,16 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div th:if="${blogCategory}">
-							<p>Category: <span th:text="${blogCategoryName}"></span></p>
+							<p>
+								Category: <span th:text="${blogCategoryName}"></span>
+							</p>
 						</div>
 						<div th:if="${blogAll}">
-							<p th:text="#{blog.all}"></p>						
+							<p th:text="#{blog.all}"></p>
 						</div>
-						<p sec:authorize="hasAuthority('ADMIN')"><a th:text="#{blog.new}" th:href="@{/blog/new}"></a></p>
+						<p sec:authorize="hasAuthority('ADMIN')">
+							<a th:text="#{blog.new}" th:href="@{/blog/new}"></a>
+						</p>
 					</div>
 					<div class="panel-body">
 						<div th:if="${blogNotFound}"
@@ -39,17 +44,20 @@
 							</thead>
 							<tbody>
 								<tr th:each="blog : ${blogs}">
-									<td><a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.title})}"
+									<td><a
+										th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.title})}"
 										th:text="${blog.title}"></a></td>
-									<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
-										<i class="fa fa-pencil" aria-hidden="true"></i>
-										</a>
-									</td>
+									<td sec:authorize="hasAuthority('ADMIN')"><a
+										th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
+											<i class="fa fa-pencil" aria-hidden="true"></i>
+									</a></td>
 									<td sec:authorize="hasAuthority('ADMIN')">
-										<form id="delete-form" th:method="post" th:action="@{/blog/delete/{id}(id=${blog.id})}">
-										<!-- onsubmit="return confirm('Do you really want to submit the form?');" -->
+										<form id="delete-form" th:method="post"
+											th:action="@{/blog/delete/{id}(id=${blog.id})}">
+											<!-- onsubmit="return confirm('Do you really want to submit the form?');" -->
 											<button type="button" class="btn btn-danger delete-confirm">
-											<i class="fa fa-trash" aria-hidden="true"></i></button>
+												<i class="fa fa-trash" aria-hidden="true"></i>
+											</button>
 										</form>
 									</td>
 								</tr>
@@ -72,9 +80,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- recent blogs ends -->
-			<div class="col-sm-4">
+				<!-- recent blogs ends -->
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{blog.recent}"></p>
@@ -82,16 +88,15 @@
 					<div class="panel-body">
 						<div th:each="blog : ${recentBlogs}">
 							<p>
-								<a th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+								<a
+									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
 									th:text="${blog.title}"></a>
 							</p>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- recent blogs ends -->
-			<!-- category ends -->
-			<div class="col-sm-4">
+				<!-- recent blogs ends -->
+				<!-- category ends -->
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{category.show}"></p>
@@ -99,7 +104,8 @@
 					<div class="panel-body">
 						<div th:each="category : ${categories}">
 							<p>
-								<a th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
+								<a
+									th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
 									th:text="${category.name}"></a>
 							</p>
 						</div>
