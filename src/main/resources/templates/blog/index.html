@@ -45,7 +45,7 @@
 							<tbody>
 								<tr th:each="blog : ${blogs}">
 									<td><a
-										th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.title})}"
+										th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
 										th:text="${blog.title}"></a></td>
 									<td sec:authorize="hasAuthority('ADMIN')"><a
 										th:href="@{/blog/edit/{id}(id=${blog.id})}" class="green">
@@ -89,7 +89,7 @@
 						<div th:each="blog : ${recentBlogs}">
 							<p>
 								<a
-									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.titleWithHypen})}"
 									th:text="${blog.title}"></a>
 							</p>
 						</div>

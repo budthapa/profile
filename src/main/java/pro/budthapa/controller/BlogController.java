@@ -3,7 +3,6 @@ package pro.budthapa.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,7 @@ public class BlogController {
 	}
 
 	@GetMapping("/blog/show/{id}/{blogTitle}")
-	public String findAllBlog(@PathVariable Long id, Model model, HttpServletRequest request) {
+	public String findAllBlog(@PathVariable Long id, @PathVariable String blogTitle, Model model) {
 		Blog blog = blogService.findBlogById(id);
 		recentBlogs(model);
 		allCategories(model);
@@ -132,14 +131,23 @@ public class BlogController {
 	}
 	
 	private void recentBlogs(Model model) {
-		model.addAttribute("recentBlogs", blogService.findRecentBlog());
+		List<Blog> blogs = blogService.findRecentBlog();
+		model.addAttribute("recentBlogs", replaceSpaceWithHypen(blogs));
 	}
 	
 	private void allBlogs(Model model){
-		model.addAttribute("blogs", blogService.findAllBlogs());
+		List<Blog> blogs = blogService.findAllBlogs();
+		model.addAttribute("blogs", replaceSpaceWithHypen(blogs));
 	}
 	
 	private void allCategories(Model model){
 		model.addAttribute("categories", categoryService.findAllCategory());
+	}
+	
+	private List<Blog> replaceSpaceWithHypen(List<Blog> blogList) {
+		for(int i=0;i<blogList.size();i++) {
+			blogList.get(i).setTitleWithHypen(blogList.get(i).getTitle().replace(" ", "-"));
+		}
+		return blogList;
 	}
 }

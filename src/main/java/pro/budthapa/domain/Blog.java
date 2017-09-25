@@ -38,6 +38,8 @@ public class Blog implements Serializable{
 	
 	private String image_url;
 	
+	private String titleWithHypen;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -117,6 +119,18 @@ public class Blog implements Serializable{
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getTitleWithHypen() {
+		return titleWithHypen;
+	}
+
+	public void setTitleWithHypen(String titleWithHypen) {
+		this.titleWithHypen = titleWithHypen;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

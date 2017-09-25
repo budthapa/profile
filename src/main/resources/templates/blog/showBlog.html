@@ -2,7 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-<title>View Blog</title>
+<title th:text="${blog.title}">View Blog</title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -107,7 +107,7 @@
 						<div th:each="blog : ${recentBlogs}">
 							<p>
 								<a
-									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.title})}"
+									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.titleWithHypen})}"
 									th:text="${blog.title}"></a>
 							</p>
 						</div>
