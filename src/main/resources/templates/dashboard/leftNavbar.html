@@ -8,6 +8,7 @@
 	
 		<li><a th:href="@{/project}"><i class="fa fa-edit "></i>Project</a></li>
 		<li><a th:href="@{/blog/all}"><i class="fa fa-book "></i>Blog</a></li>
-		<li><a th:href="@{/settings/user}"><i class="fa fa-gear"></i>Settings</a></li>
+		<li><a th:href="@{'/settings/user/'+${session.userId}+'/profile'}" th:unless="${session==null}"><i class="fa fa-gear"></i>Settings</a></li>
 	</ul>
 </div>
+

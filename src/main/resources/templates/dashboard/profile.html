@@ -11,35 +11,54 @@
 	<div class="container">
 		<section layout:fragment="content">
 			<div id="wrapper">
-	
+
 				<nav class="navbar-default navbar-side" role="navigation">
 					<div class="sidebar-collapse">
-						<div th:replace="dashboard/leftNavbar :: navbar">Left nav bar</div>
+						<div th:replace="dashboard/leftNavbar :: navbar">Left nav
+							bar</div>
 					</div>
 				</nav>
-				
+
 				<!-- /. NAV SIDE  -->
-	
+
 				<div id="page-wrapper">
 					<div id="page-inner">
-							<div class="panel-group">
-							    <div class="panel panel-default">
-							    	<div class="panel-heading">
-										<h3>Profile</h3>
+						<div class="panel-group">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3><i class="fa fa-user fa-2x"></i>&nbsp;Profile</h3>
+								</div>
+								<div class="panel-body">
+									<div class="col-sm-5">
+											<p>Name: </p>
+											<p>Email: <span th:text="${user.email}">User Email</span></p>
+											<p>Contact: </p>
+											<p>Registered since: </p>
 									</div>
-      								<div class="panel-body">
-    									<div class="col-sm-4">
-    										<p><a th:href="@{/settings/user/profile/change-password}">Change Password</a></p>
-    									</div>
-    									<div class="col-sm-8">
-    										right form
-    									</div>
+									<div class="col-sm-7">
+										<div class="row">
+											<div class="col-sm-3 center-block">
+												<i class="fa fa-key fa-4x"></i>
+												<p>
+													<a th:href="@{/settings/user/profile/change-password}">Change
+														Password</a>
+												</p>
+											</div>
+											<div class="col-sm-3 center-block">
+												<i class="fa fa-envelope fa-4x"></i>
+												<p>
+													<a th:href="@{/settings/user/profile/change-email}">Change
+														Email</a>
+												</p>
+											</div>
+										</div>
 									</div>
-    							</div>
-    						</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-					<!-- /. PAGE INNER  -->
+				<!-- /. PAGE INNER  -->
 			</div>
 			<!-- /. PAGE WRAPPER  -->
 

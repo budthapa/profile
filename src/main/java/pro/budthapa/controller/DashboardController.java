@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import pro.budthapa.service.UserService;
 public class DashboardController {
 	Logger log = LoggerFactory.getLogger(DashboardController.class);
 	public static final String INDEX_PAGE = "dashboard/index";
+	public static final String ADMIN_PAGE = "dashboard/admin";
 	public static final String PROFILE_PAGE = "dashboard/profile";
 	private static final String REDIRECT_TO_DASHBOARD = "redirect:/dashboard";
 	private static final String CHANGE_PASSWORD = "dashboard/changePassword";
@@ -36,9 +38,10 @@ public class DashboardController {
 	RedisTemplate<String, Object> template;
 
 	@GetMapping("/dashboard")
-	public String index(Model model, Principal principal) {
+	public String index(Model model, Principal principal, HttpSession session) {
 		if (principal != null) {
 			User user = userService.findUserByEmail(principal.getName());
+			session.setAttribute("userId", user.getId()); //access this in leftNavbar template
 			model.addAttribute("userId", user.getId());
 			/*
 			 * Jedis jedis = new Jedis("localhost", 6379); jedis.set("userId",
@@ -115,5 +118,10 @@ public class DashboardController {
 		}
 
 		return CHANGE_PASSWORD;
+	}
+	
+	@GetMapping("/admin")
+	public String adminPage() {
+		return ADMIN_PAGE;
 	}
 }
