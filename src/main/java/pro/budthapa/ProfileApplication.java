@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 import it.ozimov.springboot.mail.configuration.EnableEmailTools;
-import pro.budthapa.helper.PasswordHelper;
 
 @SpringBootApplication
 @EnableEmailTools
@@ -24,10 +23,10 @@ public class ProfileApplication {
 		messageSource.setBasename("i18n/messages");
 		return messageSource;
 	}
-	
+	/*
 	@Bean
 	public PasswordHelper passwordHelper(){
 		return new PasswordHelper();
 	}
-	
+	*/
 }

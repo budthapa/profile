@@ -1,14 +1,16 @@
 package pro.budthapa.helper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class PasswordHelper {
 	
-	@Autowired
-	private BCryptPasswordEncoder enc;
+	//@Autowired
+	//private BCryptPasswordEncoder enc;
 	
+	PasswordEncoder enc = new BCryptPasswordEncoder();
 	public boolean decryptPassword(String rawPassword, String hashedPassword){
 		return enc.matches(rawPassword, hashedPassword);
 	}
