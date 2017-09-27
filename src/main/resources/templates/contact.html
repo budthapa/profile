@@ -59,14 +59,24 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="g-recaptcha" data-sitekey="6Le92h8UAAAAAD98tc-H7YElFW2NqbNRhFT3x45M"></div>
+										<!-- prod -->
+										<div th:if="${@environment.getProperty('spring.profiles.active')}=='prod'" >
+											<div class="g-recaptcha" data-sitekey="6Le62h8UAAAAAJQ5sOUonQkrwZsgY-LeYwpSSyc9"></div>
+										</div>
+										<!-- dev -->
+										<div th:if="${@environment.getProperty('spring.profiles.active')}=='dev'" >
+											<div class="g-recaptcha" data-sitekey="6Le92h8UAAAAAD98tc-H7YElFW2NqbNRhFT3x45M"></div>
+										</div>
+										<div th:if="${captchaValidationFailed}" class="help-block alert alert-danger error-margin" >
+											<span th:text="#{captcha.validation.failed}">captcha validation failed</span>
+										</div>
 									</div>
 								</div>
 			
 								<div class="col-md-7">
 									<div class="form-group">
 										<label for="name"> Message</label>
-										<textarea name="message" id="message" class="contact-textarea form-control "
+										<textarea th:field="*{message}" id="message" class="contact-textarea form-control "
 											rows="9" cols="25" placeholder="Message"></textarea>
 									</div>
 								</div>

@@ -103,6 +103,12 @@
 			<artifactId>geotimezone</artifactId>
 			<version>1.0.3</version>
 		</dependency>
+		<!-- recaptcha -->
+		<dependency>
+			<groupId>com.github.mkopylec</groupId>
+			<artifactId>recaptcha-spring-boot-starter</artifactId>
+			<version>1.3.10</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
