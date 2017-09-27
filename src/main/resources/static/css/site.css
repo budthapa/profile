@@ -1,15 +1,12 @@
-i
-
- 
- @CHARSET "UTF-8";
+@CHARSET "UTF-8";
 
 /* Custom CSS for the application */
 html, body {
 	background-color: #efefef;
 	height: 100%;
 	margin: 0;
-	font-size: 16px;
-	line-height: 24px;
+	font-size: 14px;
+/* 	line-height: 24px; */
 }
 
 /* keep footer at buttom */
@@ -64,6 +61,7 @@ a {
 	color: black;
 	padding: 2px;
 	margin-top: -22px;
+	width: 100%;
 }
 
 /* login box starts */
