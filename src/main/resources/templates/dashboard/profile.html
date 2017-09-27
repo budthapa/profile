@@ -14,8 +14,7 @@
 
 				<nav class="navbar-default navbar-side" role="navigation">
 					<div class="sidebar-collapse">
-						<div th:replace="dashboard/leftNavbar :: navbar">Left nav
-							bar</div>
+						<div th:replace="dashboard/leftNavbar :: navbar">Left navbar</div>
 					</div>
 				</nav>
 
@@ -26,14 +25,18 @@
 						<div class="panel-group">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3><i class="fa fa-user fa-2x"></i>&nbsp;Profile</h3>
+									<h3>
+										<i class="fa fa-user fa-2x"></i>&nbsp;Profile
+									</h3>
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-5">
-											<p>Name: </p>
-											<p>Email: <span th:text="${user.email}">User Email</span></p>
-											<p>Contact: </p>
-											<p>Registered since: </p>
+										<p>Name:</p>
+										<p>
+											Email: <span th:text="${user.email}">User Email</span>
+										</p>
+										<p>Contact:</p>
+										<p>Registered since:</p>
 									</div>
 									<div class="col-sm-7">
 										<div class="row">

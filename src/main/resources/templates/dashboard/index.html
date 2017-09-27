@@ -15,18 +15,7 @@
 					<div class="sidebar-collapse">
 						<div th:replace="dashboard/leftNavbar :: navbar">Left nav
 							bar</div>
-						<hr />
-						<div
-							th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-							<div th:if="${currentUser!=null}">
-								<ul class="nav navbar-nav navbar-right">
-									<li><a th:href="@{/user}"><i class="fa fa-user"
-											aria-hidden="true"></i> <span th:text="${currentUser}"></span></a></li>
-									<li><a th:href="@{/logout}"><i class="fa fa-sign-out"
-											aria-hidden="true"></i>Logout</a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 				</nav>
 
