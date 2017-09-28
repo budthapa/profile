@@ -69,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private String[] PUBLIC_MATCHERS={
 		"/","/css/**","/image/**","/js/**","/login", "/register/**",
-		"/contact","/contact/new","/resume","/project","/blog/all", "/blog/show/**","/blog/category/**","/verify/**","/dashboard", "/error",
-		"/player/**"
+		"/contact","/contact/new","/about","/project","/blog/all", "/blog/show/**","/blog/category/**","/verify/**","/dashboard", "/error",
+		"/player/**", "/search"
 		
 	};
 	

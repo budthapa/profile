@@ -98,7 +98,7 @@ public class PageController {
 		return INDEX_PAGE;
 	}
 
-	@GetMapping("/resume")
+	@GetMapping("/about")
 	public String resume(Model model) {
 		Resume resume = resumeService.findByEmail(USER_EMAIL);
 		model.addAttribute("resume", resume);
@@ -215,7 +215,7 @@ public class PageController {
 		model.addAttribute("linkExpired", true);
 		return LOGIN_PAGE;
 	}
-
+	
 	private String createUrl(String uuid, HttpServletRequest request) {
 		String url = HTTP_SCHEME + ADDRESS + VERIFY + uuid;
 		return url;
