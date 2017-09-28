@@ -38,10 +38,9 @@ public class DashboardController {
 	RedisTemplate<String, Object> template;
 
 	@GetMapping("/dashboard")
-	public String index(Model model, Principal principal, HttpSession session) {
+	public String index(Model model, Principal principal) {
 		if (principal != null) {
 			User user = userService.findUserByEmail(principal.getName());
-			session.setAttribute("userId", user.getId()); //access this in leftNavbar template
 			model.addAttribute("userId", user.getId());
 			/*
 			 * Jedis jedis = new Jedis("localhost", 6379); jedis.set("userId",
@@ -121,7 +120,7 @@ public class DashboardController {
 	}
 	
 	@GetMapping("/admin")
-	public String adminPage() {
+	public String adminPage(HttpSession session) {
 		return ADMIN_PAGE;
 	}
 }

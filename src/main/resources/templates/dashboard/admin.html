@@ -13,22 +13,24 @@
 			<div id="wrapper">
 				<nav class="navbar-default navbar-side" role="navigation">
 					<div class="sidebar-collapse">
-						<div th:replace="dashboard/leftNavbar :: navbar">Left nav bar</div>
+						<div th:replace="dashboard/leftNavbar :: navbar">Left nav
+							bar</div>
 					</div>
 				</nav>
-				
+
 				<!-- /. NAV SIDE  -->
-	
+
 				<div id="page-wrapper">
 					<div id="page-inner">
 						<div class="row">
 							<div class="col-sm-4">
-								<h2>DASHBOARD</h2><span th:text="${session.foo}"></span>
+								<h2>DASHBOARD</h2>
+								<span th:text="${session.foo}"></span>
 							</div>
 						</div>
 						<!-- /. ROW  -->
 						<hr />
-						
+
 						<!-- /. ROW  -->
 						<div class="row text-center pad-top">
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
@@ -78,10 +80,11 @@
 									</a>
 								</div>
 							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" sec:authorize="isAuthenticated()">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"
+								sec:authorize="isAuthenticated()">
 								<div class="div-square">
-								
-									<a th:href="@{/settings/user/{id}/profile(id=${userId})}"> <i class="fa fa-gear fa-5x"></i>
+									<a th:href="@{'/settings/user/'+${session.userId}+'/profile'}"
+										th:unless="${session==null}"> <i class="fa fa-gear fa-5x"></i>
 										<h4>Settings</h4>
 									</a>
 								</div>
