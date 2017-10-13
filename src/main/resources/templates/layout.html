@@ -3,8 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description"
 	content="This is the personal blog of Buddhi Bal Thapa. I write stuff about programming 
 	and technologies while in the process of learning something new and about the stuff I've learnt. I also write stuff 
@@ -101,21 +100,22 @@
 								</div>
 								<div id="navbar" class="navbar-collapse collapse">
 									<ul class="nav navbar-nav">
-										<li><a th:href="@{/about}">About</a></li>
+										<li><a th:href="@{/about}"><i
+												class="fa fa-user fa-lg" aria-hidden="true"></i>About</a></li>
 										<!-- 	<li><a th:href="@{/project}">Project</a></li> -->
 
 										<li class="dropdown"><a class="dropdown-toggle"
 											th:href="@{/blog/all}" data-toggle="dropdown" role="button"
-											aria-haspopup="true" aria-expanded="false"> Blog<span
-												class="caret"></span>
-										</a>
+											aria-haspopup="true" aria-expanded="false"><i
+												class="fa fa-book fa-lg" aria-hidden="true"></i>Blog<span
+												class="caret"></span> </a>
 											<ul class="dropdown-menu">
 												<li><a sec:authorize="hasAuthority('ADMIN')"
 													th:href="@{/blog/new}" th:text="#{blog.new}"></a></li>
 												<li><a th:href="@{/blog/all}" th:text="#{blog.all}">CSS</a></li>
 											</ul></li>
 
-										<li><a th:href="@{/contact}">Contact</a></li>
+										<li><a th:href="@{/contact}"><i class="fa fa-address-card-o fa-lg" aria-hidden="true"></i>Contact</a></li>
 
 										<li class="dropdown" sec:authorize="hasAuthority('ADMIN')">
 											<a class="dropdown-toggle" th:href="@{#}"
@@ -157,17 +157,17 @@
 				</div>
 				<div class="col-sm-4">
 					<script>
-						(function() {
-							var cx = '007721834027680516237:lydg9kt25ng';
-							var gcse = document.createElement('script');
-							gcse.type = 'text/javascript';
-							gcse.async = true;
-							gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-							var s = document.getElementsByTagName('script')[0];
-							s.parentNode.insertBefore(gcse, s);
-						})();
-					</script>
-					<gcse:search></gcse:search>
+  (function() {
+    var cx = '007721834027680516237:lydg9kt25ng';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
 				</div>
 			</div>
 			<div class="row">
@@ -207,10 +207,12 @@
 								<div class="col-sm-4 hidden-xs">
 									<ul>
 										<li><a th:href="@{https://github.com/budthapa}"
-											target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+											target="_blank"><i class="fa fa-github fa-lg"
+												aria-hidden="true"></i></a></li>
 										<li><a
 											th:href="@{https://www.linkedin.com/in/buddhi-bal-thapa-2bb87670}"
-											target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+											target="_blank"><i class="fa fa-linkedin fa-lg"
+												aria-hidden="true"></i></a></li>
 										<li><a th:href="@{https://twitter.com/buddhibalthapa}"
 											target="_blank"><i class="fa fa-twitter fa-lg"
 												aria-hidden="true"></i></a></li>
