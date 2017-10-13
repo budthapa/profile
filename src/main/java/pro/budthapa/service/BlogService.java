@@ -13,4 +13,5 @@ public interface BlogService {
 	public void deleteBlog(Long id);
 	public List<Blog> findRecentBlog();
 	public List<Blog> findAllBlogsByCategory(Category category);
+	public List<Blog> findLatest5Blog();
 }

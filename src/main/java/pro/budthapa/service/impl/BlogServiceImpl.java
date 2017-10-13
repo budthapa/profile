@@ -49,5 +49,10 @@ public class BlogServiceImpl implements BlogService{
 	public List<Blog> findAllBlogsByCategory(Category category) {
 		return blogRepository.findBlogByCategory(category);
 	}
+	
+	@Override
+	public List<Blog> findLatest5Blog(){
+		return blogRepository.findFirst5ByOrderByCreateDateDesc();
+	}
 
 }

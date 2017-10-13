@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,13 +28,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 
+import pro.budthapa.domain.Blog;
 import pro.budthapa.domain.Contact;
 import pro.budthapa.domain.Register;
 import pro.budthapa.domain.Resume;
 import pro.budthapa.domain.User;
+import pro.budthapa.helper.BlogHelper;
 import pro.budthapa.helper.GeoLocation;
 import pro.budthapa.helper.GeoLocationHelper;
 import pro.budthapa.helper.PasswordHelper;
+import pro.budthapa.service.BlogService;
+import pro.budthapa.service.CategoryService;
 import pro.budthapa.service.EmailHelperService;
 import pro.budthapa.service.ResumeService;
 import pro.budthapa.service.UserService;
@@ -62,6 +67,12 @@ public class PageController {
 	
 	@Autowired
 	private ResumeService resumeService;
+	
+	@Autowired
+	private BlogService blogService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	@GetMapping("/")
 	public String index(Model model, HttpServletRequest request) throws IOException, GeoIp2Exception {
@@ -90,7 +101,18 @@ public class PageController {
 		} else {
 			model.addAttribute("goodNight", true);
 		}
-
+		
+		List<Blog> blogs = blogService.findLatest5Blog();
+		String description = new String();
+		for(Blog blog:blogs) {
+			if(blog.getDescription().length()>500) {
+				description = blog.getDescription().substring(0, 350);
+				blog.setDescription(description);
+			}
+		}
+		
+		model.addAttribute("categories", categoryService.findAllCategory());
+		model.addAttribute("recentBlogs", BlogHelper.replaceSpaceWithHypen(blogs));
 		model.addAttribute("currentUserTime", glHelper.getCurrentUserTime().getHour()
 				+":"+glHelper.getCurrentUserTime().getMinute()
 				+":"+glHelper.getCurrentUserTime().getSecond());

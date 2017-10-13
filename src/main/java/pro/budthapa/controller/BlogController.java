@@ -1,5 +1,6 @@
 package pro.budthapa.controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import pro.budthapa.domain.Blog;
 import pro.budthapa.domain.Category;
+import pro.budthapa.domain.User;
+import pro.budthapa.helper.BlogHelper;
 import pro.budthapa.service.BlogService;
 import pro.budthapa.service.CategoryService;
+import pro.budthapa.service.UserService;
 
 @Controller
 public class BlogController {
@@ -31,6 +35,9 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("/blog/new")
 	public String index(Model model) {
 		allCategories(model);
@@ -39,10 +46,12 @@ public class BlogController {
 	}
 
 	@PostMapping("/blog/new")
-	public String index(@Valid Blog blog, BindingResult result, Model model) {
+	public String index(@Valid Blog blog, BindingResult result, Model model, Principal principal) {
 		allCategories(model);
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
+			User user = userService.findUserByEmail(principal.getName());
+			blog.setUser(user);
 			blogService.saveBlog(blog);
 			model.addAttribute("blogSaved", true);
 			return ADD_NEW_BLOG;
@@ -132,22 +141,23 @@ public class BlogController {
 	
 	private void recentBlogs(Model model) {
 		List<Blog> blogs = blogService.findRecentBlog();
-		model.addAttribute("recentBlogs", replaceSpaceWithHypen(blogs));
+		model.addAttribute("recentBlogs", BlogHelper.replaceSpaceWithHypen(blogs));
 	}
 	
 	private void allBlogs(Model model){
 		List<Blog> blogs = blogService.findAllBlogs();
-		model.addAttribute("blogs", replaceSpaceWithHypen(blogs));
+		model.addAttribute("blogs", BlogHelper.replaceSpaceWithHypen(blogs));
 	}
 	
 	private void allCategories(Model model){
 		model.addAttribute("categories", categoryService.findAllCategory());
 	}
-	
+	/*
 	private List<Blog> replaceSpaceWithHypen(List<Blog> blogList) {
 		for(int i=0;i<blogList.size();i++) {
 			blogList.get(i).setTitleWithHypen(blogList.get(i).getTitle().replace(" ", "-"));
 		}
 		return blogList;
 	}
+	*/
 }

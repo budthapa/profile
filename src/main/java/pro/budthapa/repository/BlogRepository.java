@@ -12,4 +12,5 @@ import pro.budthapa.domain.Category;
 public interface BlogRepository extends JpaRepository<Blog, Long>{
 	public List<Blog> findFirst2ByOrderByCreateDateDesc();
 	public List<Blog> findBlogByCategory(Category category);
+	public List<Blog> findFirst5ByOrderByCreateDateDesc();
 }

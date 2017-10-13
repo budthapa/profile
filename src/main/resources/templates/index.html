@@ -7,76 +7,149 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="greetings text-center">
-			<div id="mycarousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="item active">
-						<div th:if="${goodMorning}">
-							<img th:src="@{/image/morning.jpg}"
-								class="center-block img-responsive hidden-sm hidden-xs"
-								alt="Greetings from Buddhi Bal Thapa" /> <img
-								th:src="@{/image/morning640x360.jpg}"
-								class="center-block img-responsive hidden-md hidden-lg"
-								alt="Greetings from Buddhi Bal Thapa" />
-							<div class="carousel-caption greeting-text">Good morning!
-								Have a great day.</div>
+		<div class="container">
+			<div class="col-sm-9">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div th:each="blog: ${recentBlogs}">
+							<h3 class="title-heading">
+								<a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
+									th:text="${blog.title}"></a>
+							</h3>
+							<i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;<span
+								class="author" th:text="${blog.user.name}">author</span> 
+							<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<span
+								class="published-date" th:text="${blog.createDate}">published date</span>
+							<p th:utext="${blog.description}">description</p>
+							<p class="pull-right">
+							<a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
+								th:text="#{blog.view.more}">Read
+								more</a>
+								</p>
+						<hr />
 						</div>
-						<div th:if="${goodAfternoon}">
-							<img th:src="@{/image/afternoon.jpg}"
-								class="center-block img-responsive hidden-sm hidden-xs"
-								alt="Greetings from Buddhi Bal Thapa" /> <img
-								th:src="@{/image/afternoon640x360.jpg}"
-								class="center-block img-responsive hidden-md hidden-lg"
-								alt="Greetings from Buddhi Bal Thapa" />
-							<div class="carousel-caption greeting-text">Good afternoon!
-								How is your day today? Time for coffee?</div>
-						</div>
-						<div th:if="${goodEvening}">
-							<img th:src="@{/image/evening.jpg}"
-								class="center-block img-responsive hidden-sm hidden-xs"
-								alt="Greetings from Buddhi Bal Thapa" /> <img
-								th:src="@{/image/evening640x360.jpg}"
-								class="center-block img-responsive hidden-md hidden-lg"
-								alt="Greetings from Buddhi Bal Thapa" />
-							<div class="carousel-caption greeting-text">Good evening!
-								Time for some snacks?</div>
-						</div>
-						<div th:if="${goodNight}">
-							<img th:src="@{/image/night.jpg}"
-								class="center-block img-responsive hidden-sm hidden-xs"
-								alt="Greetings from Buddhi Bal Thapa" /> <img
-								th:src="@{/image/night640x360.jpg}"
-								class="center-block img-responsive hidden-md hidden-lg"
-								alt="Greetings from Buddhi Bal Thapa" />
-							<div class="carousel-caption greeting-text">Hope you had a
-								great day today. Good night, time to sleep</div>
-						</div>
-						<div th:if="${midNight}">
-							<img th:src="@{/image/midnight.jpg}"
-								class="center-block img-responsive hidden-sm hidden-xs"
-								alt="Greetings from Buddhi Bal Thapa" /> <img
-								th:src="@{/image/midnight640x360.jpg}"
-								class="center-block img-responsive hidden-md hidden-lg"
-								alt="Greetings from Buddhi Bal Thapa" />
-							<span class="carousel-caption greeting-text">Wow! You still
-								awake?</span>
-						</div>
-
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row current-time-row">
-			<!-- style="position: absolute; color: #e0e0e0; top: 0px; left: 50px; font-weight: bold; width: 82%; margin-top: 5px;"> -->
-			<div class="col-sm-6">
-				<span>
-					Your current time is <strong><span
-						th:text="${currentUserTime}"></span></strong>
-				</span>
-			</div>
-			<div class="col-sm-6">
-				<span>You are greeted with respect to your
-					current time.</span>
+			<div class="col-sm-3">
+				<!-- greetings start -->
+				<div class="greetings text-center">
+					<div id="mycarousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="item active">
+								<div th:if="${goodMorning}">
+									<img th:src="@{/image/morning.jpg}"
+										class="center-block img-responsive hidden-sm hidden-xs"
+										alt="Greetings from Buddhi Bal Thapa" /> <img
+										th:src="@{/image/morning640x360.jpg}"
+										class="center-block img-responsive hidden-md hidden-lg"
+										alt="Greetings from Buddhi Bal Thapa" />
+									<div class="carousel-caption greeting-text">Good morning!
+										Have a great day.</div>
+								</div>
+								<div th:if="${goodAfternoon}">
+									<img th:src="@{/image/afternoon640x360.jpg}"
+										class="center-block img-responsive"
+										alt="Greetings from Buddhi Bal Thapa" />
+									<div class="carousel-caption greeting-text">Good
+										afternoon! How is your day today? Time for coffee?</div>
+								</div>
+								<div th:if="${goodEvening}">
+									<img th:src="@{/image/evening640x360.jpg}"
+										class="center-block img-responsive"
+										alt="Greetings from Buddhi Bal Thapa" />
+									<div class="carousel-caption greeting-text">Good evening!
+										Time for some snacks?</div>
+								</div>
+								<div th:if="${goodNight}">
+									<img th:src="@{/image/night640x360.jpg}"
+										class="center-block img-responsive"
+										alt="Greetings from Buddhi Bal Thapa" />
+									<div class="carousel-caption greeting-text">Hope you had
+										a great day today. Good night, time to sleep</div>
+								</div>
+								<div th:if="${midNight}">
+									<img th:src="@{/image/midnight640x360.jpg}"
+										class="center-block img-responsive"
+										alt="Greetings from Buddhi Bal Thapa" /> <span
+										class="carousel-caption greeting-text">Wow! You still
+										awake?</span>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row current-time-row">
+					<!-- style="position: absolute; color: #e0e0e0; top: 0px; left: 50px; font-weight: bold; width: 82%; margin-top: 5px;"> -->
+					<span> Your current time is <strong
+						th:text="${currentUserTime}"></strong></span>
+				</div>
+				<!-- greetings end -->
+				<!-- blog subscription starts -->
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.subscription}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="category : ${categories}">
+							<p>
+								<a
+									th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
+									th:text="${category.name}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- blog subscription ends -->
+				<!-- most popular blog starts -->
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.most.popular}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${blogs}">
+							<p>
+								<a th:href="@{/blog/show/{id}(id=${blog.id})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- most popular blog ends -->
+				<!-- recent blogs ends -->
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{blog.recent}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="blog : ${recentBlogs}">
+							<p>
+								<a
+									th:href="@{/blog/show/{id}/{title}/(id=${blog.id}, title=${blog.titleWithHypen})}"
+									th:text="${blog.title}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- recent blogs ends -->
+				<!-- category ends -->
+				<div class="panel panel-default">
+					<div class="panel-heading most-popular-blog">
+						<p th:text="#{category.show}"></p>
+					</div>
+					<div class="panel-body">
+						<div th:each="category : ${categories}">
+							<p>
+								<a
+									th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
+									th:text="${category.name}"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- categories ends -->
+
 			</div>
 		</div>
 	</div>

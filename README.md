@@ -24,3 +24,5 @@ Execute `sudo java -jar -Dspring.profiles.active="prod" <jarfile-name>.jar` to e
     12. Save post as draft
     13. Finish Project page
     14. Affiliate page
+    15. Location map in contact us page
+    16. Subscribe newsletter
