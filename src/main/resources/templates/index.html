@@ -13,20 +13,22 @@
 					<div class="panel-body">
 						<div th:each="blog: ${recentBlogs}">
 							<h3 class="title-heading">
-								<a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
+								<a
+									th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
 									th:text="${blog.title}"></a>
 							</h3>
 							<i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;<span
-								class="author" th:text="${blog.user.name}">author</span> 
-							<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<span
-								class="published-date" th:text="${blog.createDate}">published date</span>
+								class="author" th:text="${blog.user.name}">author</span> <i
+								class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<span
+								class="published-date" th:text="${blog.createDate}">published
+								date</span>
 							<p th:utext="${blog.description}">description</p>
 							<p class="pull-right">
-							<a th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
-								th:text="#{blog.view.more}">Read
-								more</a>
-								</p>
-						<hr />
+								<a
+									th:href="@{/blog/show/{id}/{blogTitle}(id=${blog.id}, blogTitle=${blog.titleWithHypen})}"
+									th:text="#{blog.view.more}">Read more</a>
+							</p>
+							<hr />
 						</div>
 					</div>
 				</div>
@@ -38,11 +40,8 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div th:if="${goodMorning}">
-									<img th:src="@{/image/morning.jpg}"
-										class="center-block img-responsive hidden-sm hidden-xs"
-										alt="Greetings from Buddhi Bal Thapa" /> <img
-										th:src="@{/image/morning640x360.jpg}"
-										class="center-block img-responsive hidden-md hidden-lg"
+									<img th:src="@{/image/morning640x360.jpg}"
+										class="center-block img-responsive"
 										alt="Greetings from Buddhi Bal Thapa" />
 									<div class="carousel-caption greeting-text">Good morning!
 										Have a great day.</div>
@@ -87,22 +86,26 @@
 				</div>
 				<!-- greetings end -->
 				<!-- blog subscription starts -->
-				<div class="panel panel-default">
+				<!--
+				<div id="subscribe" class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{blog.subscription}"></p>
 					</div>
 					<div class="panel-body">
-						<div th:each="category : ${categories}">
-							<p>
-								<a
-									th:href="@{/blog/category/{id}/{title}/(id=${category.id}, title=${category.name})}"
-									th:text="${category.name}"></a>
-							</p>
-						</div>
+						<form>
+							<div class="form-group">
+								<input type="email" class="form-control" id="email"
+									placeholder="Enter email" name="email"/>
+							</div>
+							<button type="button" class="btn btn-danger">Subscribe</button>
+							<a href="#" id="no-thanks">No thanks</a>
+						</form>
 					</div>
 				</div>
+				-->
 				<!-- blog subscription ends -->
 				<!-- most popular blog starts -->
+				<!-- 
 				<div class="panel panel-default">
 					<div class="panel-heading most-popular-blog">
 						<p th:text="#{blog.most.popular}"></p>
@@ -116,6 +119,7 @@
 						</div>
 					</div>
 				</div>
+				 -->
 				<!-- most popular blog ends -->
 				<!-- recent blogs ends -->
 				<div class="panel panel-default">

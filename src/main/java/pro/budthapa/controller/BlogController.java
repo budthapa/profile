@@ -119,6 +119,9 @@ public class BlogController {
 	@GetMapping("/blog/category/{id}/{name}")
 	public String getBlogByCategory(@PathVariable(name = "id") Long categoryId, @PathVariable String name, Category category, Model model) {
 		List<Blog> blog = blogService.findAllBlogsByCategory(category);
+		for(Blog b:blog) {
+			System.out.println(b.getId()+" "+b.getTitle());
+		}
 		category.setBlog(blog);
 		category.setName(name);
 		return findBlogs(model, category);
@@ -129,7 +132,7 @@ public class BlogController {
 		if (category.getId() != null) {
 			model.addAttribute("blogCategory",true);
 			model.addAttribute("blogCategoryName",category.getName());
-			model.addAttribute("blogs", category.getBlog());
+			model.addAttribute("blogs", BlogHelper.replaceSpaceWithHypen(category.getBlog()));
 		} else {
 			model.addAttribute("blogAll",true);
 			allBlogs(model);

@@ -15,7 +15,8 @@
 						<div class="row">
 							<p th:text="${blog.title}" class="title-heading"></p>
 							<div class="published-on">
-								<span>Published on:<span th:utext="${blog.createDate}"></span></span>
+								<span th:text="${blog.user.name}" style="font-style: normal;font-weight: bold;"></span>&nbsp;
+								<span>Published on: <span th:utext="${blog.createDate}"></span></span>
 							</div>
 						</div>
 						<!-- share button starts -->

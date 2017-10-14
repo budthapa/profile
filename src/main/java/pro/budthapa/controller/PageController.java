@@ -111,11 +111,12 @@ public class PageController {
 			}
 		}
 		
+		String amPm = (hour >=12 && hour <=23)?"PM":"AM";
+		
 		model.addAttribute("categories", categoryService.findAllCategory());
 		model.addAttribute("recentBlogs", BlogHelper.replaceSpaceWithHypen(blogs));
 		model.addAttribute("currentUserTime", glHelper.getCurrentUserTime().getHour()
-				+":"+glHelper.getCurrentUserTime().getMinute()
-				+":"+glHelper.getCurrentUserTime().getSecond());
+				+":"+glHelper.getCurrentUserTime().getMinute()+" "+amPm);
 
 		return INDEX_PAGE;
 	}

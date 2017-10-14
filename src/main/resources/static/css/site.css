@@ -219,22 +219,25 @@ a {
 	margin-bottom: -20px;
 }
 
-/* langing page starts */ti
+/* langing page starts */
+ti
 
-.author{
+.author {
 	font-style: italic;
 }
 
-.published-date{
+.published-date {
 	color: #a29f9f;
 }
 
-
-
+.greeting-text {
+	font-size: 1em;
+	background-color: rgba(30, 83, 31, 0.5);
+}
 
 @media screen and (min-width:1500px) {
 	.greeting-text {
-		font-size: 2.6em;
+		font-size: 2.4em;
 		background-color: rgba(30, 83, 31, 0.5);
 	}
 	.container {
@@ -243,10 +246,6 @@ a {
 }
 
 @media screen and (min-width:1200px) {
-	.greeting-text {
-		font-size: 1.8em;
-		background-color: rgba(30, 83, 31, 0.5);
-	}
 	.container {
 		min-width: 1352px;
 	}
@@ -254,9 +253,6 @@ a {
 
 }
 @media screen and (max-width : 320px) {
-	.greeting-text {
-		font-size: 1.3em !important;
-	}
 	.current-time-row {
 		color: #080808;
 		width: 100%;

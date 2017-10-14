@@ -195,6 +195,12 @@ $(document).ready(function(e){
 	*/
 });
 
+$().ready(function(){
+	$("#no-thanks").click(function(){
+		$("#subscribe").hide();
+	})
+});
+
 
 
 
