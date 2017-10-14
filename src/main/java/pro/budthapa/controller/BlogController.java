@@ -92,13 +92,15 @@ public class BlogController {
 	}
 
 	@PostMapping("/blog/edit/{id}")
-	public String updateBlog(@PathVariable Long id, @Valid Blog blog, BindingResult result, Model model) {
+	public String updateBlog(@PathVariable Long id, @Valid Blog blog, BindingResult result, Model model, Principal principal) {
 		allCategories(model);
 		
 		model.addAttribute("blog", blog);
 		if (!result.hasErrors()) {
 			blog.setId(id);
 			blog.setUpdateDate(LocalDate.now());
+			User user = userService.findUserByEmail(principal.getName());
+			blog.setUser(user);
 			blogService.updateBlog(blog);
 			model.addAttribute("blogUpdated", true);
 			return EDIT_BLOG_PAGE;
