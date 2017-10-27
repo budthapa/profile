@@ -2,6 +2,7 @@ package pro.budthapa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -10,6 +11,7 @@ import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 @SpringBootApplication
 @EnableEmailTools
+@EnableCaching
 public class ProfileApplication {
 
 	public static void main(String[] args) {
