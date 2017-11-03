@@ -15,8 +15,10 @@
 						<div class="row">
 							<p th:text="${blog.title}" class="title-heading"></p>
 							<div class="published-on">
-								<span th:text="${blog.user.name}" style="font-style: normal;font-weight: bold;"></span>&nbsp;
-								<span>Published on: <span th:utext="${blog.createDate}"></span></span>
+								<span th:text="${blog.user.name}"
+									style="font-style: normal; font-weight: bold;"></span>&nbsp; <span>Published
+									on: <span th:utext="${blog.createDate}"></span>
+								</span>
 							</div>
 						</div>
 						<!-- share button starts -->
@@ -130,8 +132,11 @@
 						</div>
 					</div>
 				</div>
+				<!-- categories ends -->
+				<!-- affiliate link starts -->
+				<div th:include="affiliateLink :: affiliate-right-sidebar"></div>
+				<!-- affiliate link ends -->
 			</div>
-			<!-- categories ends -->
 			<!-- comment box starts -->
 			<div id="disqus-comment" layout:fragment="comment">
 				<div id="disqus_thread"></div>

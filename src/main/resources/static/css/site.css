@@ -265,6 +265,19 @@ ti
 	text-align: center;
 }
 
+.affiliate-link-header {
+	background-color: #1b5773 !important;
+	color: white !important;
+	text-align: center;
+	font-weight: bold;
+}
+
+.affiliate-link-body {
+	text-align: center;
+	background-color: #163d60;
+	color: #fdfdfd;
+}
+
 /* langing page ends */
 
 /* search bar starts */
