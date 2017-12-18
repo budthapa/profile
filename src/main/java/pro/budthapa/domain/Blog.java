@@ -27,7 +27,7 @@ public class Blog implements Serializable{
 	@Size(min=3,max=255, message="{blog.title.invalid}")
 	private String title;
 	
-	@Size(min=3,max=20000, message="{blog.description.invalid}")
+	@Size(min=3, message="{blog.description.invalid}")
 	@NotNull
 	private String description;
 	
