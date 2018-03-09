@@ -73,10 +73,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		"/player/**", "/search"
 		
 	};
-	
+	/*
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
+	*/
 }
